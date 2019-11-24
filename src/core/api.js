@@ -10,3 +10,12 @@ export const getAllPosts = () => {
         },
     });
 };
+
+export const addPost = (body) => {
+    return axios.put(`${HOST}/posts`, body, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};

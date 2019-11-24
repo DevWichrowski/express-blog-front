@@ -13,10 +13,10 @@ const AddPost = props => {
             <h1>Add post</h1>
             <form style={{display: 'flex', flexDirection: 'column', width: '60%', margin: '0 auto'}} noValidate
                   autoComplete="off">
-                <TextField id="standard-basic" label="Title"/>
-                <TextField id="standard-basic" label="Description"/>
-                <TextField id="standard-basic" label="Image url"/>
-                <TextField id="standard-basic" label="Tags"/>
+                <TextField id="standard-basic" label="Title" onChange={setPostTitle}/>
+                <TextField id="standard-basic" label="Description" onChange={setPostDesc}/>
+                <TextField id="standard-basic" label="Image url" onChange={setPostImgUrl}/>
+                <TextField id="standard-basic" label="Tags" onChange={setPostTags}/>
                 <br/>
                 <Button variant="contained" color="primary" type="submit">
                     Submit
