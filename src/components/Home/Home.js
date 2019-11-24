@@ -12,12 +12,15 @@ const Home = (props) => {
     return (
         <div>
             <h1>HOME</h1>
-
             {props.allPosts.map((post, index) => {
                 return (
                     <div>
+                        <hr/>
                         <h1>{post.title}</h1>
+                        <img src={post.imageUrl}/>
                         <p>{post.description}</p>
+                        <p>Author: {post.userId.login}</p>
+                        <hr/>
                     </div>
                 )
             })}

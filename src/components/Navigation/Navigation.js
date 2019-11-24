@@ -1,9 +1,7 @@
 import React from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import MenuIcon from '@material-ui/icons/Menu';
 import {NavLink} from "react-router-dom";
 
 const Navigation = props => {
@@ -14,6 +12,11 @@ const Navigation = props => {
                     <NavLink exact to="/">
                         <Typography variant="h6" color="inherit">
                             Home
+                        </Typography>
+                    </NavLink>
+                    <NavLink exact to="/add-post">
+                        <Typography variant="h6" color="inherit">
+                            Add post
                         </Typography>
                     </NavLink>
                 </Toolbar>

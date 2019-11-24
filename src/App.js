@@ -3,6 +3,7 @@ import './App.scss';
 import Home from "./components/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
 import {BrowserRouter, Route} from "react-router-dom";
+import AddPost from "./components/AddPost/AddPost";
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <BrowserRouter>
                 <Navigation/>
                 <Route exact path="/" component={Home}/>
+                <Route path="/add-post" component={AddPost}/>
             </BrowserRouter>
         </div>
     );
