@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
 const AddPost = props => {
+    const [postTitle, setPostTitle] = useState(null);
+    const [postDesc, setPostDesc] = useState(null);
+    const [postImgUrl, setPostImgUrl] = useState(null);
+    const [postTags, setPostTags] = useState(null);
+
     return (
         <div>
             <h1>Add post</h1>
