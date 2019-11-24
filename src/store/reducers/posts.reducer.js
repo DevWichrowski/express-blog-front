@@ -13,12 +13,25 @@ export const postsReducer = (state = initialState, action) =>
                 draft.pending = true;
                 break;
             }
-            case PostsActions.GET_POSTS_SUCCESS:{
+            case PostsActions.GET_POSTS_SUCCESS: {
                 draft.posts = action.payload;
                 draft.pending = false;
                 break;
             }
-            case PostsActions.GET_POSTS_FAILURE:{
+            case PostsActions.GET_POSTS_FAILURE: {
+                draft.pending = false;
+                break;
+            }
+            case PostsActions.ADD_POSTS_PENDING: {
+                draft.pending = true;
+                break;
+            }
+            case PostsActions.ADD_POSTS_SUCCESS: {
+                draft.pending = false;
+                draft.posts = [...state.posts, action.payload];
+                break;
+            }
+            case PostsActions.ADD_POSTS_FAILURE: {
                 draft.pending = false;
                 break;
             }

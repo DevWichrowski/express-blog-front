@@ -11,8 +11,8 @@ export const getAllPosts = () => {
     });
 };
 
-export const addPost = (body) => {
-    return axios.put(`${HOST}/posts`, body, {
+export const addPostApi = (body) => {
+    return axios.post(`${HOST}/posts`, body, {
         headers: {
             Accept: 'application/json',
             'Content-type': 'application/json',

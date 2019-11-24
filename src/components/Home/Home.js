@@ -19,7 +19,7 @@ const Home = (props) => {
                         <h1>{post.title}</h1>
                         <img src={post.imageUrl}/>
                         <p>{post.description}</p>
-                        <p>Author: {post.userId.login}</p>
+                        <p>Author: {post.userId && post.userId.login}</p>
                         <hr/>
                     </div>
                 )
