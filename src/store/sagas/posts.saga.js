@@ -5,10 +5,12 @@ import {
     deletePostFailure,
     deletePostSuccess,
     getPostsFailure,
-    getPostsSuccess
+    getPostsSuccess,
+    getSinglePostFailure,
+    getSinglePostSuccess
 } from "../actions/posts.actions";
 
-import {addPostApi, deletePostApi, getAllPosts} from "../../core/api";
+import {addPostApi, deletePostApi, getAllPosts, getSinglePost} from "../../core/api";
 
 function* getPostsGen(action) {
     try {
@@ -54,11 +56,29 @@ function* deletePostGen(action) {
     }
 }
 
+function* getSinglePostGen(action) {
+    try {
+        console.log('action.payload', action.payload)
+        const response = yield getSinglePost(action.payload);
+        const data = yield response.data;
+
+        console.log('response', response);
+        console.log('data', data);
+
+        yield put(getSinglePostSuccess(data))
+
+    } catch (e) {
+        console.log('error', e);
+        getSinglePostFailure(e)
+    }
+}
+
 
 export default function* postsSaga() {
     yield all([
         yield takeLatest('GET_POSTS_PENDING', getPostsGen),
         yield takeLatest('ADD_POSTS_PENDING', addPostGen),
-        yield takeLatest('DELETE_POST_PENDING', deletePostGen)
+        yield takeLatest('DELETE_POST_PENDING', deletePostGen),
+        yield takeLatest('GET_SINGLE_POST_PENDING', getSinglePostGen)
     ]);
 }

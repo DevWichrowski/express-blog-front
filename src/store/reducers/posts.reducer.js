@@ -3,6 +3,7 @@ import * as PostsActions from "../actions/posts.actions";
 
 const initialState = {
     posts: [],
+    singlePost: null,
     pending: false,
 };
 
@@ -45,6 +46,21 @@ export const postsReducer = (state = initialState, action) =>
                 break;
             }
             case PostsActions.DELETE_POST_FAILURE: {
+                draft.pending = false;
+                break;
+            }
+            case PostsActions.GET_SINGLE_POST_PENDING: {
+                draft.pending = true;
+                draft.singlePost = null;
+                break;
+            }
+            case PostsActions.GET_SINGLE_POST_SUCCESS: {
+                draft.pending = false;
+                console.log('payloadzilkk', action.payload);
+                draft.singlePost = {...action.payload};
+                break;
+            }
+            case PostsActions.GET_SINGLE_POST_FAILURE: {
                 draft.pending = false;
                 break;
             }

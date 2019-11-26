@@ -1,13 +1,19 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
 import {getAllPosts} from "../../store/selectors/posts.selectors";
-import {deletePostPending, getPostsPending} from "../../store/actions/posts.actions";
+import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
+import {getSinglePost} from "../../core/api";
 
 const Home = (props) => {
 
     useEffect(() => {
         props.getAllPosts();
     }, [])
+
+    const getSinglePost = id => {
+        props.getSinglePost(id);
+        console.log('single post', props.getPost)
+    };
 
     return (
         <div>
@@ -27,6 +33,8 @@ const Home = (props) => {
                         })}</p>
                         <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
                             X</strong>
+                        <br/>
+                        <strong onClick={id => getSinglePost(post._id)}>Test GET ONE POST</strong>
                         <hr/>
                     </div>
                 )
@@ -37,12 +45,14 @@ const Home = (props) => {
 
 const mapStateToProps = state => ({
     allPosts: getAllPosts(state),
+    getPost: getSinglePost(state)
 });
 
 
 const mapDispatchToProps = dispatch => ({
     getAllPosts: payload => dispatch(getPostsPending(payload)),
-    deletePost: payload => dispatch(deletePostPending(payload))
+    deletePost: payload => dispatch(deletePostPending(payload)),
+    getSinglePost: payload => dispatch(getSinglePostPending(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

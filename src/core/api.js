@@ -28,3 +28,12 @@ export const deletePostApi = (id) => {
         },
     });
 };
+
+export const getSinglePost = (id) => {
+    return axios.get(`${HOST}/posts/${id}`, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};
