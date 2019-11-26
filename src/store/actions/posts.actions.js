@@ -6,6 +6,9 @@ export const ADD_POSTS_PENDING = 'ADD_POSTS_PENDING';
 export const ADD_POSTS_SUCCESS = 'ADD_POSTS_SUCCESS';
 export const ADD_POSTS_FAILURE = 'ADD_POSTS_FAILURE';
 
+export const DELETE_POST_PENDING = 'DELETE_POST_PENDING';
+export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
+export const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE';
 
 export const getPostsPending = () => ({
     type: GET_POSTS_PENDING,
@@ -21,7 +24,6 @@ export const getPostsFailure = payload => ({
     payload
 });
 
-
 export const addPostPending = payload => ({
     type: ADD_POSTS_PENDING,
     payload
@@ -35,4 +37,17 @@ export const addPostSuccess = payload => ({
 export const addPostFailure = payload => ({
     type: ADD_POSTS_FAILURE,
     payload
+});
+
+export const removePostPending = payload => ({
+    type: DELETE_POST_PENDING,
+});
+
+export const removePostSuccess = payload => ({
+    type: DELETE_POST_SUCCESS,
+    payload
+});
+
+export const removePostFailure = payload => ({
+    type: DELETE_POST_FAILURE
 });

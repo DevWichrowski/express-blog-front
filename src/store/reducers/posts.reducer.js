@@ -35,6 +35,19 @@ export const postsReducer = (state = initialState, action) =>
                 draft.pending = false;
                 break;
             }
+            case PostsActions.DELETE_POST_PENDING: {
+                draft.pending = true;
+                break;
+            }
+            case PostsActions.DELETE_POST_SUCCESS: {
+                draft.pending = false;
+                draft.posts = draft.posts.filter(post => post.id !== action.payload)
+                break;
+            }
+            case PostsActions.DELETE_POST_FAILURE: {
+                draft.pending = false;
+                break;
+            }
             default:
                 return state;
         }
