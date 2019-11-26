@@ -19,3 +19,12 @@ export const addPostApi = (body) => {
         },
     });
 };
+
+export const deletePostApi = (id) => {
+    return axios.post(`${HOST}/posts/${id}`, null, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};

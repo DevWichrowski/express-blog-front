@@ -20,6 +20,7 @@ const Home = (props) => {
                         <img src={post.imageUrl}/>
                         <p>{post.description}</p>
                         <p>Author: {post.userId && post.userId.login}</p>
+                        <strong style={{cursor: 'pointer'}}>DELETE - X</strong>
                         <hr/>
                     </div>
                 )
