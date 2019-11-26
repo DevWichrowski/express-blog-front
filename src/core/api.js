@@ -21,7 +21,7 @@ export const addPostApi = (body) => {
 };
 
 export const deletePostApi = (id) => {
-    return axios.post(`${HOST}/posts/${id}`, null, {
+    return axios.delete(`${HOST}/posts/${id}`, {
         headers: {
             Accept: 'application/json',
             'Content-type': 'application/json',

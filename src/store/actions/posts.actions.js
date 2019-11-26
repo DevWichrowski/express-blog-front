@@ -39,15 +39,16 @@ export const addPostFailure = payload => ({
     payload
 });
 
-export const removePostPending = payload => ({
+export const deletePostPending = payload => ({
     type: DELETE_POST_PENDING,
+    payload
 });
 
-export const removePostSuccess = payload => ({
+export const deletePostSuccess = payload => ({
     type: DELETE_POST_SUCCESS,
     payload
 });
 
-export const removePostFailure = payload => ({
+export const deletePostFailure = payload => ({
     type: DELETE_POST_FAILURE
 });

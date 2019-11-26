@@ -41,7 +41,7 @@ export const postsReducer = (state = initialState, action) =>
             }
             case PostsActions.DELETE_POST_SUCCESS: {
                 draft.pending = false;
-                draft.posts = draft.posts.filter(post => post.id !== action.payload)
+                draft.posts = draft.posts.filter(post => post._id !== action.payload);
                 break;
             }
             case PostsActions.DELETE_POST_FAILURE: {

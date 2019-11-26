@@ -1,7 +1,14 @@
 import {all, put, takeLatest} from 'redux-saga/effects';
-import {addPostFailure, addPostSuccess, getPostsFailure, getPostsSuccess} from "../actions/posts.actions";
+import {
+    addPostFailure,
+    addPostSuccess,
+    deletePostFailure,
+    deletePostSuccess,
+    getPostsFailure,
+    getPostsSuccess
+} from "../actions/posts.actions";
 
-import {addPostApi, getAllPosts} from "../../core/api";
+import {addPostApi, deletePostApi, getAllPosts} from "../../core/api";
 
 function* getPostsGen(action) {
     try {
@@ -31,10 +38,27 @@ function* addPostGen(action) {
     }
 }
 
+function* deletePostGen(action) {
+    try {
+        const response = yield deletePostApi(action.payload);
+        const data = yield response.data;
+
+        console.log('response', response);
+        console.log('data', data);
+
+        yield put(deletePostSuccess(action.payload))
+
+    } catch (e) {
+        console.log('error', e);
+        deletePostFailure(e)
+    }
+}
+
 
 export default function* postsSaga() {
     yield all([
         yield takeLatest('GET_POSTS_PENDING', getPostsGen),
-        yield takeLatest('ADD_POSTS_PENDING', addPostGen)
+        yield takeLatest('ADD_POSTS_PENDING', addPostGen),
+        yield takeLatest('DELETE_POST_PENDING', deletePostGen)
     ]);
 }
