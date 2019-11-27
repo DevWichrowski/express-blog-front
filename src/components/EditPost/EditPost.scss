@@ -1,0 +1,9 @@
+input:-webkit-autofill + label {
+  // Insert your active label styles
+}
+
+.mdl-textfield__input:-webkit-autofill + .mdl-textfield__label {
+  // Active label styles here
+  top: -20px; // Just an example
+  transform: scale(0.75); // Just an example
+}

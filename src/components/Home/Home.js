@@ -4,20 +4,16 @@ import {getAllPosts} from "../../store/selectors/posts.selectors";
 import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import {getSinglePost} from "../../core/api";
 import {Redirect} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const Home = (props) => {
+    const history = useHistory();
 
     useEffect(() => {
         props.getAllPosts();
     }, [])
 
-    const editPost = id => {
-        console.log('click')
-        props.getSinglePost(id);
-        if (props.getPost != null) {
-            return (<Redirect to="/edit-post"/>);
-        }
-    };
+    const editPost = id => history.push(`/edit-post/${id}`);
 
     return (
         <div>
@@ -49,7 +45,7 @@ const Home = (props) => {
 
 const mapStateToProps = state => ({
     allPosts: getAllPosts(state),
-    getPost: getSinglePost(state)
+    singlePost: getSinglePost(state)
 });
 
 
