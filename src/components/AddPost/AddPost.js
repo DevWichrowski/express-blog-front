@@ -23,16 +23,12 @@ const AddPost = props => {
 
     const saveTempTag = e => {
         setTempTag(e);
-        console.log('tempTag', tempTag)
     };
 
     const saveTagToArr = e => {
-        console.log('e', e)
         if (e.key === "Enter") {
             setPostTags([...postTags, tempTag]);
             setTempTag(null);
-            console.log('postTags', postTags);
-            console.log('tempTag', tempTag);
         }
     }
 

@@ -29,8 +29,6 @@ function* addPostGen(action) {
         const response = yield addPostApi(action.payload);
         const data = yield response.data;
 
-        console.log('response', response);
-        console.log('data', data);
 
         yield put(addPostSuccess(action.payload))
 
@@ -45,8 +43,6 @@ function* deletePostGen(action) {
         const response = yield deletePostApi(action.payload);
         const data = yield response.data;
 
-        console.log('response', response);
-        console.log('data', data);
 
         yield put(deletePostSuccess(action.payload))
 
@@ -58,12 +54,8 @@ function* deletePostGen(action) {
 
 function* getSinglePostGen(action) {
     try {
-        console.log('action.payload', action.payload)
         const response = yield getSinglePost(action.payload);
         const data = yield response.data;
-
-        console.log('response', response);
-        console.log('data', data);
 
         yield put(getSinglePostSuccess(data))
 

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getAllPosts} from "../../store/selectors/posts.selectors";
 import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import {getSinglePost} from "../../core/api";
+import {Redirect} from "react-router-dom";
 
 const Home = (props) => {
 
@@ -10,9 +11,12 @@ const Home = (props) => {
         props.getAllPosts();
     }, [])
 
-    const getSinglePost = id => {
+    const editPost = id => {
+        console.log('click')
         props.getSinglePost(id);
-        console.log('single post', props.getPost)
+        if (props.getPost != null) {
+            return (<Redirect to="/edit-post"/>);
+        }
     };
 
     return (
@@ -34,7 +38,7 @@ const Home = (props) => {
                         <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
                             X</strong>
                         <br/>
-                        <strong style={{cursor: 'pointer'}}>EDIT POST</strong>
+                        <strong style={{cursor: 'pointer'}} onClick={id => editPost(post._id)}>EDIT POST</strong>
                         <hr/>
                     </div>
                 )

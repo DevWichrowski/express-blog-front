@@ -56,7 +56,6 @@ export const postsReducer = (state = initialState, action) =>
             }
             case PostsActions.GET_SINGLE_POST_SUCCESS: {
                 draft.pending = false;
-                console.log('payloadzilkk', action.payload);
                 draft.singlePost = {...action.payload};
                 break;
             }
