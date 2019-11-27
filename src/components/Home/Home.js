@@ -26,11 +26,11 @@ const Home = (props) => {
                         <img src={post.imageUrl}/>
                         <p>{post.description}</p>
                         <p>Author: {post.userId && post.userId.login}</p>
-                        <p>Tags: {post.tags.map(tag => {
+                        <p>Tags: {post.tags.length > 0 ? post.tags.map(tag => {
                             return (
                                 `${tag},`
                             )
-                        })}</p>
+                        }) : null}</p>
                         <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
                             X</strong>
                         <br/>

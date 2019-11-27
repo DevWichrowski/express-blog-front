@@ -8,7 +8,9 @@ const AddPost = props => {
     const [postTitle, setPostTitle] = useState(null);
     const [postDesc, setPostDesc] = useState(null);
     const [postImgUrl, setPostImgUrl] = useState(null);
-    const [postTags, setPostTags] = useState(null);
+    const [postTags, setPostTags] = useState([]);
+    const [tempTag, setTempTag] = useState(null);
+
 
     const submitPost = (e) => {
         props.addPost({
@@ -19,6 +21,21 @@ const AddPost = props => {
         })
     };
 
+    const saveTempTag = e => {
+        setTempTag(e);
+        console.log('tempTag', tempTag)
+    };
+
+    const saveTagToArr = e => {
+        console.log('e', e)
+        if (e.key === "Enter") {
+            setPostTags([...postTags, tempTag]);
+            setTempTag(null);
+            console.log('postTags', postTags);
+            console.log('tempTag', tempTag);
+        }
+    }
+
     return (
         <div>
             <h1>Add post</h1>
@@ -27,7 +44,8 @@ const AddPost = props => {
                 <TextField id="standard-basic" label="Title" onChange={e => setPostTitle(e.target.value)}/>
                 <TextField id="standard-basic" label="Description" onChange={e => setPostDesc(e.target.value)}/>
                 <TextField id="standard-basic" label="Image url" onChange={e => setPostImgUrl(e.target.value)}/>
-                <TextField id="standard-basic" label="Tags" onChange={e => setPostTags(e.target.value)}/>
+                <TextField id="standard-basic" label="Tags" onChange={e => saveTempTag(e.target.value)}
+                           onKeyPress={e => saveTagToArr(e)} value={tempTag ? tempTag : ''}/>
                 <br/>
                 <Button variant="contained" color="primary" onClick={submitPost}>
                     Submit
