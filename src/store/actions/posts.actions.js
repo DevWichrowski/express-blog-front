@@ -14,6 +14,10 @@ export const GET_SINGLE_POST_PENDING = 'GET_SINGLE_POST_PENDING';
 export const GET_SINGLE_POST_SUCCESS = 'GET_SINGLE_POST_SUCCESS';
 export const GET_SINGLE_POST_FAILURE = 'GET_SINGLE_POST_FAILURE';
 
+export const EDIT_POST_PENDING = 'EDIT_POST_PENDING';
+export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
+export const EDIT_POST_FAILURE = 'EDIT_POST_FAILURE';
+
 export const getPostsPending = () => ({
     type: GET_POSTS_PENDING,
 });
@@ -69,5 +73,20 @@ export const getSinglePostSuccess = payload => ({
 
 export const getSinglePostFailure = payload => ({
     type: GET_SINGLE_POST_FAILURE,
+    payload
+});
+
+export const editPostPending = payload => ({
+    type: EDIT_POST_PENDING,
+    payload
+});
+
+export const editPostSuccess = payload => ({
+    type: EDIT_POST_SUCCESS,
+    payload
+});
+
+export const editPostFailure = payload => ({
+    type: EDIT_POST_FAILURE,
     payload
 });
