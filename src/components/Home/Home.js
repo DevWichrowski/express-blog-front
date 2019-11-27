@@ -34,7 +34,7 @@ const Home = (props) => {
                         <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
                             X</strong>
                         <br/>
-                        <strong onClick={id => getSinglePost(post._id)}>Test GET ONE POST</strong>
+                        <strong style={{cursor: 'pointer'}}>EDIT POST</strong>
                         <hr/>
                     </div>
                 )
