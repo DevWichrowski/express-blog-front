@@ -12,10 +12,13 @@ export const getAllPosts = () => {
 };
 
 export const addPostApi = (body) => {
+    const token = localStorage.token;
+
     return axios.post(`${HOST}/posts/add`, body, {
         headers: {
             Accept: 'application/json',
             'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
     });
 };
