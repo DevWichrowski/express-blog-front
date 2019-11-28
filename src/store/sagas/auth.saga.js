@@ -9,9 +9,6 @@ function* loginGen(action) {
         const response = yield loginPost(action.payload);
         const data = yield response.data;
 
-        console.log('response', response);
-        console.log('data', data);
-        
         yield put(loginSuccess(data))
     } catch (e) {
         console.log('error', e);
