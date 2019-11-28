@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import "./Login.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
+import {connect} from "react-redux";
+import {loginPending} from "../../store/actions/auth.actions";
 
 const Login = props => {
 
@@ -11,6 +14,10 @@ const Login = props => {
     const submit = () => {
         console.log('login', login);
         console.log('password', password);
+        props.login({
+            login,
+            password
+        })
     };
 
     return (
@@ -40,4 +47,8 @@ const Login = props => {
     );
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+    login: payload => dispatch(loginPending(payload))
+});
+
+export default connect(null, mapDispatchToProps)(Login);
