@@ -39,7 +39,7 @@ const EditPost = props => {
     const setPostTitle = e => setPost({...post, title: e.target.value});
     const setPostDescription = e => setPost({...post, description: e.target.value});
     const setPostImageUrl = e => setPost({...post, imageUrl: e.target.value});
-    const setPostTags = e => setPost({...post, tags: e})
+    const setPostTags = e => setPost({...post, tags: e});
 
     const submitPost = (e) => {
         // props.addPost({
@@ -60,6 +60,12 @@ const EditPost = props => {
             setTags([...postTags, tempTag]);
             setTempTag(null);
         }
+    };
+
+    const deleteTag = tag => {
+        console.log('powinno usunac', tag);
+        setTags(postTags.filter(_tag => _tag.id != tag.id));
+        console.log('post.tags', post.tags)
     };
 
     return (
@@ -90,16 +96,12 @@ const EditPost = props => {
                     label="Tags"
                     onChange={e => saveTempTag(e.target.value)}
                     onKeyPress={e => saveTagToArr(e)}
-                    value={post ? post.tags.map(tag => {
-                        return (
-                            tag
-                        )
-                    }) : ''}/>
+                    value={'asd'}/>
                 <br/>
                 <div>
-                    {post != null && post.tags.length > 0 ? post.tags.map(tag => {
+                    {postTags != null && postTags.length > 0 ? postTags.map(tag => {
                         return (
-                            <Chip label={tag.value} color="primary"/>
+                            <Chip key={tag.id} label={tag.value} color="primary" onDelete={() => deleteTag(tag)}/>
                         )
                     }) : null}
                 </div>
@@ -108,6 +110,15 @@ const EditPost = props => {
                 <Button variant="contained" color="primary" onClick={submitPost}>
                     Submit
                 </Button>
+
+                {post != null ? <img src={post.imageUrl} alt="postImgUrl"
+                                     style={{
+                                         maxWidth: '500px',
+                                         maxHeight: '500px',
+                                         margin: '0 auto',
+                                         marginTop: '50px'
+                                     }}/> : null}
+
             </form>
         </div>
     );
