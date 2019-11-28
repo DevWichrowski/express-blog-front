@@ -37,3 +37,12 @@ export const getSinglePost = (id) => {
         },
     });
 };
+
+export const editPost = (id, body) => {
+    return axios.patch(`${HOST}/posts/${id}`, body, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};

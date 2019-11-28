@@ -4,7 +4,7 @@ import {getAllPosts} from "../../store/selectors/posts.selectors";
 import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import {getSinglePost} from "../../core/api";
 import {Redirect} from "react-router-dom";
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import Chip from "@material-ui/core/Chip";
 
 const Home = (props) => {
@@ -21,19 +21,19 @@ const Home = (props) => {
             <h1>HOME</h1>
             {props.allPosts.map((post, index) => {
                 return (
-                    <div key={index}>
+                    <div key={post._id}>
                         <hr/>
                         <h1>{post.title}</h1>
                         <img src={post.imageUrl}/>
                         <p>{post.description}</p>
                         <p>Author: {post.userId && post.userId.login}</p>
-                        <p>
-                            {post != null && post.tags.length > 0 ? post.tags.map(tag => {
+                        <div>
+                            {post != null && post.tags.length > 0 ? post.tags.map((tag, index) => {
                                 return (
-                                    <Chip label={tag.value} color="primary"/>
+                                    <Chip key={index} label={tag.value} color="primary"/>
                                 )
                             }) : null}
-                        </p>
+                        </div>
                         <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
                             X</strong>
                         <br/>

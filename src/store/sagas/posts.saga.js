@@ -3,14 +3,14 @@ import {
     addPostFailure,
     addPostSuccess,
     deletePostFailure,
-    deletePostSuccess,
+    deletePostSuccess, editPostFailure, editPostSuccess,
     getPostsFailure,
     getPostsSuccess,
     getSinglePostFailure,
     getSinglePostSuccess
 } from "../actions/posts.actions";
 
-import {addPostApi, deletePostApi, getAllPosts, getSinglePost} from "../../core/api";
+import {addPostApi, deletePostApi, editPost, getAllPosts, getSinglePost} from "../../core/api";
 
 function* getPostsGen(action) {
     try {
@@ -65,12 +65,26 @@ function* getSinglePostGen(action) {
     }
 }
 
+function* editPostGen(action) {
+    try {
+        console.log('edit post', action.payload);
+        const respone = yield editPost(action.payload._id, action.payload);
+        console.log('respone', respone);
+        const data = yield respone.data;
+
+        yield put(editPostSuccess(data))
+    } catch (e) {
+        console.log('Error:', e);
+        editPostFailure(e);
+    }
+}
 
 export default function* postsSaga() {
     yield all([
         yield takeLatest('GET_POSTS_PENDING', getPostsGen),
         yield takeLatest('ADD_POSTS_PENDING', addPostGen),
         yield takeLatest('DELETE_POST_PENDING', deletePostGen),
-        yield takeLatest('GET_SINGLE_POST_PENDING', getSinglePostGen)
+        yield takeLatest('GET_SINGLE_POST_PENDING', getSinglePostGen),
+        yield takeLatest('EDIT_POST_PENDING', editPostGen)
     ]);
 }

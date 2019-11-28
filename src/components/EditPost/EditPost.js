@@ -5,7 +5,12 @@ import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import {getAllPosts} from "../../store/selectors/posts.selectors";
 import {getSinglePost} from "../../core/api";
-import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
+import {
+    deletePostPending,
+    editPostPending,
+    getPostsPending,
+    getSinglePostPending
+} from "../../store/actions/posts.actions";
 import axios from "axios";
 import {HOST} from "../../core/api"
 import "./EditPost.scss";
@@ -39,13 +44,9 @@ const EditPost = props => {
     const setPostTags = e => setPost({...post, tags: e});
 
     const submitPost = (e) => {
-        // props.addPost({
-        //     title: postTitle,
-        //     description: postDesc,
-        //     imageUrl: postImgUrl,
-        //     tags: postTags,
-        // })
-        console.log('Submited post', {...post, tags: postTags});
+        props.editPost({
+            ...post, tags: postTags
+        })
     };
 
     const saveTempTag = e => setTempTag(e);
@@ -116,7 +117,8 @@ const EditPost = props => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    getSinglePost: payload => dispatch(getSinglePostPending(payload))
+    getSinglePost: payload => dispatch(getSinglePostPending(payload)),
+    editPost: payload => dispatch(editPostPending(payload))
 });
 
 export default connect(null, mapDispatchToProps)(EditPost);

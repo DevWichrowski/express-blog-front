@@ -63,6 +63,18 @@ export const postsReducer = (state = initialState, action) =>
                 draft.pending = false;
                 break;
             }
+            case PostsActions.EDIT_POST_PENDING: {
+                draft.pending = true;
+                break;
+            }
+            case PostsActions.EDIT_POST_SUCCESS: {
+                draft.pending = false;
+                break;
+            }
+            case PostsActions.EDIT_POST_FAILURE: {
+                draft.pending = false;
+                break;
+            }
             default:
                 return state;
         }
