@@ -17,10 +17,6 @@ const EditPost = props => {
 
     const [post, setPost] = useState();
     const [tempTag, setTempTag] = useState(null);
-
-    // const [postTitle, setPostTitle] = useState(null);
-    // const [postDesc, setPostDesc] = useState(null);
-    // const [postImgUrl, setPostImgUrl] = useState(null);
     const [postTags, setTags] = useState([]);
 
     useEffect(() => {
