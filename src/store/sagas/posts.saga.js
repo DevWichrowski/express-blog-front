@@ -29,9 +29,7 @@ function* addPostGen(action) {
         const response = yield addPostApi(action.payload);
         const data = yield response.data;
 
-
         yield put(addPostSuccess(action.payload))
-
     } catch (e) {
         console.log('error', e);
         addPostFailure(e)
@@ -43,9 +41,7 @@ function* deletePostGen(action) {
         const response = yield deletePostApi(action.payload);
         const data = yield response.data;
 
-
         yield put(deletePostSuccess(action.payload))
-
     } catch (e) {
         console.log('error', e);
         deletePostFailure(e)
