@@ -10,6 +10,7 @@ import axios from "axios";
 import {HOST} from "../../core/api"
 import "./EditPost.scss";
 import Chip from "@material-ui/core/Chip";
+import * as uuid from "uuid";
 
 const EditPost = props => {
     let {id} = useParams();
@@ -48,25 +49,19 @@ const EditPost = props => {
         //     imageUrl: postImgUrl,
         //     tags: postTags,
         // })
-        console.log('Submited post', post);
+        console.log('Submited post', {...post, tags: postTags});
     };
 
-    const saveTempTag = e => {
-        setTempTag(e);
-    };
+    const saveTempTag = e => setTempTag(e);
 
     const saveTagToArr = e => {
         if (e.key === "Enter") {
-            setTags([...postTags, tempTag]);
+            setTags([...postTags, {id: uuid(), value: e.target.value}]);
             setTempTag(null);
         }
     };
 
-    const deleteTag = tag => {
-        console.log('powinno usunac', tag);
-        setTags(postTags.filter(_tag => _tag.id != tag.id));
-        console.log('post.tags', post.tags)
-    };
+    const deleteTag = tag => setTags(postTags.filter(_tag => _tag.id !== tag.id));
 
     return (
         <div className="edit-post">
@@ -96,7 +91,7 @@ const EditPost = props => {
                     label="Tags"
                     onChange={e => saveTempTag(e.target.value)}
                     onKeyPress={e => saveTagToArr(e)}
-                    value={'asd'}/>
+                    value={tempTag ? tempTag : ''}/>
                 <br/>
                 <div>
                     {postTags != null && postTags.length > 0 ? postTags.map(tag => {
