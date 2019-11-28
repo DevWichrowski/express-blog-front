@@ -27,15 +27,10 @@ const Home = (props) => {
                         <img src={post.imageUrl}/>
                         <p>{post.description}</p>
                         <p>Author: {post.userId && post.userId.login}</p>
-                        <p>Tags: {post.tags.length > 0 ? post.tags.map(tag => {
-                            return (
-                                `${tag},`
-                            )
-                        }) : null}</p>
                         <p>
                             {post != null && post.tags.length > 0 ? post.tags.map(tag => {
                                 return (
-                                    <Chip label={tag} color="primary"/>
+                                    <Chip label={tag.value} color="primary"/>
                                 )
                             }) : null}
                         </p>

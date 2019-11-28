@@ -62,6 +62,9 @@ const AddPost = props => {
                 <Button variant="contained" color="primary" onClick={submitPost}>
                     Submit
                 </Button>
+                {postImgUrl != null ? <img src={postImgUrl} alt="postImgUrl"
+                                           style={{maxWidth: '500px', maxHeight: '500px', margin: '0 auto', marginTop: '50px;'}}/> : null}
+
             </form>
         </div>
     );

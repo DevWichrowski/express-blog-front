@@ -99,7 +99,7 @@ const EditPost = props => {
                 <div>
                     {post != null && post.tags.length > 0 ? post.tags.map(tag => {
                         return (
-                            <Chip label={tag} color="primary"/>
+                            <Chip label={tag.value} color="primary"/>
                         )
                     }) : null}
                 </div>
