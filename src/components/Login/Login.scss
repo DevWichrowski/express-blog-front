@@ -1,0 +1,15 @@
+.login {
+
+  .login-form {
+    width: 30%;
+    margin: 0 auto;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+
+    .form-text-field{
+      margin-top: 2%;
+      margin-bottom: 2%;
+    }
+  }
+}
