@@ -15,6 +15,7 @@ function App() {
                 <Route exact path="/" component={Home}/>
                 <Route path="/add-post" component={AddPost}/>
                 <Route path="/edit-post/:id" component={EditPost}/>
+                <Route path="/login"/>
             </BrowserRouter>
         </div>
     );

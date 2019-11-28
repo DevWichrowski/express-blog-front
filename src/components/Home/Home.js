@@ -15,6 +15,7 @@ const Home = (props) => {
     }, [])
 
     const editPost = id => history.push(`/edit-post/${id}`);
+    const goToPost = post => history.push(`/post/${post.title}`)
 
     return (
         <div>
@@ -23,8 +24,8 @@ const Home = (props) => {
                 return (
                     <div key={post._id}>
                         <hr/>
-                        <h1>{post.title}</h1>
-                        <img src={post.imageUrl}/>
+                        <h1 onClick={() => goToPost(post)} style={{cursor: 'pointer'}}>{post.title}</h1>
+                        <img src={post.imageUrl} style={{width: '600px', height: '500px'}}/>
                         <p>{post.description}</p>
                         <p>Author: {post.userId && post.userId.login}</p>
                         <div>

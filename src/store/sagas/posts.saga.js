@@ -29,7 +29,7 @@ function* addPostGen(action) {
         const response = yield addPostApi(action.payload);
         const data = yield response.data;
 
-        yield put(addPostSuccess(action.payload))
+        yield put(addPostSuccess(data))
     } catch (e) {
         console.log('error', e);
         addPostFailure(e)
