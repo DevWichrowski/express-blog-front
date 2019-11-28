@@ -46,3 +46,12 @@ export const editPost = (id, body) => {
         },
     });
 };
+
+export const loginPost = body => {
+    return axios.post(`${HOST}/users/login`, body, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};
