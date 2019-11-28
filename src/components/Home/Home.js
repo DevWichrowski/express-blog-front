@@ -5,6 +5,7 @@ import {deletePostPending, getPostsPending, getSinglePostPending} from "../../st
 import {getSinglePost} from "../../core/api";
 import {Redirect} from "react-router-dom";
 import { useHistory } from 'react-router-dom';
+import Chip from "@material-ui/core/Chip";
 
 const Home = (props) => {
     const history = useHistory();
@@ -31,6 +32,13 @@ const Home = (props) => {
                                 `${tag},`
                             )
                         }) : null}</p>
+                        <p>
+                            {post != null && post.tags.length > 0 ? post.tags.map(tag => {
+                                return (
+                                    <Chip label={tag} color="primary"/>
+                                )
+                            }) : null}
+                        </p>
                         <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
                             X</strong>
                         <br/>

@@ -9,6 +9,7 @@ import {deletePostPending, getPostsPending, getSinglePostPending} from "../../st
 import axios from "axios";
 import {HOST} from "../../core/api"
 import "./EditPost.scss";
+import Chip from "@material-ui/core/Chip";
 
 const EditPost = props => {
     let {id} = useParams();
@@ -94,6 +95,15 @@ const EditPost = props => {
                             tag
                         )
                     }) : ''}/>
+                <br/>
+                <div>
+                    {post != null && post.tags.length > 0 ? post.tags.map(tag => {
+                        return (
+                            <Chip label={tag} color="primary"/>
+                        )
+                    }) : null}
+                </div>
+
                 <br/>
                 <Button variant="contained" color="primary" onClick={submitPost}>
                     Submit

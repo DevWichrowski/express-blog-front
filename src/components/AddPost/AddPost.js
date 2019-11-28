@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {addPostPending} from "../../store/actions/posts.actions";
 import {connect} from "react-redux";
+import Chip from "@material-ui/core/Chip";
+import * as uuid from "uuid";
 
 const AddPost = props => {
     const [postTitle, setPostTitle] = useState(null);
@@ -22,7 +24,10 @@ const AddPost = props => {
     };
 
     const saveTempTag = e => {
-        setTempTag(e);
+        setTempTag({
+            id: uuid(),
+            value: e,
+        });
     };
 
     const saveTagToArr = e => {
@@ -30,7 +35,11 @@ const AddPost = props => {
             setPostTags([...postTags, tempTag]);
             setTempTag(null);
         }
-    }
+    };
+
+    const deleteTag = tag => {
+        setPostTags(postTags.filter(_tag => _tag.id !== tag.id))
+    };
 
     return (
         <div>
@@ -41,7 +50,14 @@ const AddPost = props => {
                 <TextField id="standard-basic" label="Description" onChange={e => setPostDesc(e.target.value)}/>
                 <TextField id="standard-basic" label="Image url" onChange={e => setPostImgUrl(e.target.value)}/>
                 <TextField id="standard-basic" label="Tags" onChange={e => saveTempTag(e.target.value)}
-                           onKeyPress={e => saveTagToArr(e)} value={tempTag ? tempTag : ''}/>
+                           onKeyPress={e => saveTagToArr(e)} value={tempTag ? tempTag.value : ''}/>
+                <div>
+                    {postTags != null && postTags.length > 0 ? postTags.map(mappedTag => {
+                        return (
+                            <Chip label={mappedTag.value} color="primary" onDelete={() => deleteTag(mappedTag)}/>
+                        )
+                    }) : null}
+                </div>
                 <br/>
                 <Button variant="contained" color="primary" onClick={submitPost}>
                     Submit
