@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
-import {connect} from "react-redux";
-import {getAllPosts} from "../../store/selectors/posts.selectors";
-import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
-import {getSinglePost} from "../../core/api";
-import {Redirect} from "react-router-dom";
-import {useHistory} from 'react-router-dom';
+import {useHistory} from "react-router-dom";
+import React, {useEffect} from "react";
 import Chip from "@material-ui/core/Chip";
+import {getAllPosts} from "../../../store/selectors/posts.selectors";
+import {getSinglePost} from "../../../core/api";
+import {deletePostPending, getPostsPending, getSinglePostPending} from "../../../store/actions/posts.actions";
+import {connect} from "react-redux";
 
-const Home = (props) => {
+const AdminPosts = (props) => {
     const history = useHistory();
 
     useEffect(() => {
@@ -27,7 +26,8 @@ const Home = (props) => {
                         <h1 onClick={() => goToPost(post)} style={{cursor: 'pointer'}}>{post.title}</h1>
                         <img src={post.imageUrl} style={{width: '600px', height: '500px'}}/>
                         <p>{post.description}</p>
-                        <p>Author: {post.user && post.user.nickname}</p>
+                        <p>Author: {post.user && post.user.login}</p>
+                        {console.log('post', post)}
                         <div>
                             {post != null && post.tags.length > 0 ? post.tags.map((tag, index) => {
                                 return (
@@ -35,6 +35,10 @@ const Home = (props) => {
                                 )
                             }) : null}
                         </div>
+                        <strong style={{cursor: 'pointer'}} onClick={id => props.deletePost(post._id)}>DELETE -
+                            X</strong>
+                        <br/>
+                        <strong style={{cursor: 'pointer'}} onClick={id => editPost(post._id)}>EDIT POST</strong>
                         <hr/>
                     </div>
                 )
@@ -55,5 +59,5 @@ const mapDispatchToProps = dispatch => ({
     getSinglePost: payload => dispatch(getSinglePostPending(payload))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPosts);
 
