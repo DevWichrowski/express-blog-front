@@ -1,12 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import "./Navigation.scss";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import {NavLink} from "react-router-dom";
 import AdminDrawer from "./AdminDrawer/AdminDrawer";
+import {connect} from "react-redux";
+import {getMyProfilePending} from "../../store/actions/users.actions";
+import {getUserSelector} from "../../store/selectors/users.selectors";
 
 const Navigation = props => {
+    const {loggedUser} = props;
+
+    useEffect(() => {
+        if (loggedUser == null) {
+            props.getMyProfilePending();
+        }
+
+    }, [loggedUser]);
+
     const [state, setState] = React.useState({
         top: false,
         left: false,
@@ -22,6 +34,7 @@ const Navigation = props => {
         setState({...state, [side]: open});
     };
 
+
     return (
         <div className="navigation">
             <AdminDrawer state={state} toggleDrawer={toggleDrawer}/>
@@ -33,22 +46,22 @@ const Navigation = props => {
                                 Home
                             </Typography>
                         </NavLink>
-                        <NavLink exact to="/add-post">
-                            <Typography color="inherit" className="navigation-link">
-                                Add post
-                            </Typography>
-                        </NavLink>
                     </div>
+
                     <div className="nav-right-column">
-                        <NavLink exact to="/login">
+                        {loggedUser ? (<NavLink exact to="/logout">
+                            <Typography color="inherit" className="navigation-link">
+                                Logout
+                            </Typography>
+                        </NavLink>) : (<NavLink exact to="/login">
                             <Typography color="inherit" className="navigation-link">
                                 Login
                             </Typography>
-                        </NavLink>
-                        <Typography color="inherit" className="navigation-link" onClick={toggleDrawer('right', true)}>
-                            {/*<Button onClick={toggleDrawer('right', true)}>Open Right</Button>*/}
+                        </NavLink>)}
+                        {loggedUser ? (<Typography color="inherit" className="navigation-link"
+                                                   onClick={toggleDrawer('right', true)}>
                             Admin Panel
-                        </Typography>
+                        </Typography>) : null}
                     </div>
                 </Toolbar>
             </AppBar>
@@ -56,4 +69,12 @@ const Navigation = props => {
     );
 };
 
-export default Navigation;
+const mapStateToProps = state => ({
+    loggedUser: getUserSelector(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+    getMyProfilePending: payload => dispatch(getMyProfilePending(payload))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

@@ -11,7 +11,6 @@ const Home = (props) => {
 
     useEffect(() => {
         props.getAllPosts();
-        props.getMyProfilePending();
     }, []);
 
     const editPost = id => history.push(`/edit-post/${id}`);
