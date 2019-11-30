@@ -58,3 +58,15 @@ export const loginPost = body => {
         },
     });
 };
+
+export const getMyProfileApi = (id) => {
+    const token = localStorage.token;
+
+    return axios.get(`${HOST}/users/me`, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+        },
+    });
+};
