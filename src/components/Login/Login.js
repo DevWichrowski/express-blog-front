@@ -12,8 +12,6 @@ const Login = props => {
     const [password, setPassword] = useState(null);
 
     const submit = () => {
-        console.log('login', login);
-        console.log('password', password);
         props.login({
             login,
             password
