@@ -8,13 +8,18 @@ import AdminDrawer from "./AdminDrawer/AdminDrawer";
 import {connect} from "react-redux";
 import {getMyProfilePending} from "../../store/actions/users.actions";
 import {getUserSelector} from "../../store/selectors/users.selectors";
+import {logoutAllPending} from "../../store/actions/auth.actions";
 
 const Navigation = props => {
     const {loggedUser} = props;
 
     useEffect(() => {
-        if (loggedUser == null) {
-            props.getMyProfilePending();
+        // if (loggedUser == null && localStorage.getItem('token') != null) {
+        //     props.getMyProfilePending();
+        // }
+
+        if(localStorage.getItem('token') && loggedUser == null){
+                props.getMyProfilePending();
         }
 
     }, [loggedUser]);
@@ -30,7 +35,6 @@ const Navigation = props => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
-
         setState({...state, [side]: open});
     };
 
@@ -49,7 +53,7 @@ const Navigation = props => {
                     </div>
 
                     <div className="nav-right-column">
-                        {loggedUser ? (<NavLink exact to="/logout">
+                        {loggedUser ? (<NavLink exact to="/home" onClick={props.logoutAll}>
                             <Typography color="inherit" className="navigation-link">
                                 Logout
                             </Typography>
@@ -74,7 +78,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    getMyProfilePending: payload => dispatch(getMyProfilePending(payload))
+    getMyProfilePending: payload => dispatch(getMyProfilePending(payload)),
+    logoutAll: payload => dispatch(logoutAllPending(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

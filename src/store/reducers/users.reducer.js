@@ -1,8 +1,5 @@
 import produce from 'immer';
 import * as UsersActions from "../actions/users.actions";
-import {GET_MY_PROFILE_PENDING} from "../actions/users.actions";
-import {GET_MY_PROFILE_SUCCESS} from "../actions/users.actions";
-import {GET_MY_PROFILE_FAILURE} from "../actions/users.actions";
 
 
 const initialState = {
@@ -24,6 +21,10 @@ export const usersReducer = (state = initialState, action) =>
             }
             case UsersActions.GET_MY_PROFILE_FAILURE: {
                 draft.pending = false;
+                break;
+            }
+            case UsersActions.CLEAR_USER: {
+                draft.user = null;
                 break;
             }
             default:
