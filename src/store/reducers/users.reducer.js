@@ -1,5 +1,8 @@
 import produce from 'immer';
-import * as UsersActions from "../actions/auth.actions";
+import * as UsersActions from "../actions/users.actions";
+import {GET_MY_PROFILE_PENDING} from "../actions/users.actions";
+import {GET_MY_PROFILE_SUCCESS} from "../actions/users.actions";
+import {GET_MY_PROFILE_FAILURE} from "../actions/users.actions";
 
 
 const initialState = {
@@ -10,16 +13,16 @@ const initialState = {
 export const usersReducer = (state = initialState, action) =>
     produce(state, draft => {
         switch (action.type) {
-            case UsersActions.LOGIN_PENDING: {
+            case UsersActions.GET_MY_PROFILE_PENDING: {
                 draft.pending = true;
                 break;
             }
-            case UsersActions.LOGIN_SUCCESS: {
+            case UsersActions.GET_MY_PROFILE_SUCCESS: {
                 draft.pending = false;
                 draft.user = action.payload;
                 break;
             }
-            case UsersActions.LOGIN_FAILURE: {
+            case UsersActions.GET_MY_PROFILE_FAILURE: {
                 draft.pending = false;
                 break;
             }
