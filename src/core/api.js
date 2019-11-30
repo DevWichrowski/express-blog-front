@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const HOST = "http://localhost:3000";
 
-export const getAllPosts = () => {
+export const getAllPostsApi = () => {
     return axios.get(`${HOST}/posts`, {
         headers: {
             Accept: 'application/json',
@@ -32,7 +32,8 @@ export const deletePostApi = (id) => {
     });
 };
 
-export const getSinglePost = (id) => {
+export const getSinglePostApi = (id) => {
+    console.log('test')
     return axios.get(`${HOST}/posts/${id}`, {
         headers: {
             Accept: 'application/json',
@@ -41,7 +42,7 @@ export const getSinglePost = (id) => {
     });
 };
 
-export const editPost = (id, body) => {
+export const editPostApi = (id, body) => {
     return axios.patch(`${HOST}/posts/${id}`, body, {
         headers: {
             Accept: 'application/json',
@@ -50,7 +51,7 @@ export const editPost = (id, body) => {
     });
 };
 
-export const loginPost = body => {
+export const loginPostApi = body => {
     return axios.post(`${HOST}/users/login`, body, {
         headers: {
             Accept: 'application/json',

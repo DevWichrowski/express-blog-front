@@ -3,12 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {getAllPosts} from "../../store/selectors/posts.selectors";
-import {getSinglePost} from "../../core/api";
 import {
-    deletePostPending,
     editPostPending,
-    getPostsPending,
     getSinglePostPending
 } from "../../store/actions/posts.actions";
 import axios from "axios";
@@ -19,24 +15,23 @@ import * as uuid from "uuid";
 
 const EditPost = props => {
     let {id} = useParams();
-
     const [post, setPost] = useState();
     const [tempTag, setTempTag] = useState(null);
     const [postTags, setTags] = useState([]);
 
-    useEffect(() => {
-        axios.get(`${HOST}/posts/${id}`, {
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-            },
-        })
-            .then(res => {
-                setPost({...res.data});
-                setTags(res.data.tags);
-            })
-            .catch(e => console.log('Error', e));
-    }, []);
+    // useEffect(() => {
+    //     axios.get(`${HOST}/posts/${id}`, {
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-type': 'application/json',
+    //         },
+    //     })
+    //         .then(res => {
+    //             setPost({...res.data});
+    //             setTags(res.data.tags);
+    //         })
+    //         .catch(e => console.log('Error', e));
+    // }, []);
 
     const setPostTitle = e => setPost({...post, title: e.target.value});
     const setPostDescription = e => setPost({...post, description: e.target.value});

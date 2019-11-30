@@ -1,8 +1,7 @@
 import {useHistory} from "react-router-dom";
 import React, {useEffect} from "react";
 import Chip from "@material-ui/core/Chip";
-import {getAllPosts} from "../../../store/selectors/posts.selectors";
-import {getSinglePost} from "../../../core/api";
+import {getAllPosts, getSinglePostSelector} from "../../../store/selectors/posts.selectors";
 import {deletePostPending, getPostsPending, getSinglePostPending} from "../../../store/actions/posts.actions";
 import {connect} from "react-redux";
 
@@ -10,7 +9,7 @@ const AdminPosts = (props) => {
     const history = useHistory();
 
     useEffect(() => {
-        props.getAllPosts();
+        // props.getAllPostsApi();
     }, [])
 
     const editPost = id => history.push(`/edit-post/${id}`);
@@ -49,7 +48,7 @@ const AdminPosts = (props) => {
 
 const mapStateToProps = state => ({
     allPosts: getAllPosts(state),
-    singlePost: getSinglePost(state)
+    singlePost: getSinglePostSelector(state)
 });
 
 

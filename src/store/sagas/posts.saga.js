@@ -3,19 +3,20 @@ import {
     addPostFailure,
     addPostSuccess,
     deletePostFailure,
-    deletePostSuccess, editPostFailure, editPostSuccess,
+    deletePostSuccess,
+    editPostFailure,
+    editPostSuccess,
     getPostsFailure,
     getPostsSuccess,
     getSinglePostFailure,
     getSinglePostSuccess
 } from "../actions/posts.actions";
 
-import {addPostApi, deletePostApi, editPost, getAllPosts, getSinglePost} from "../../core/api";
+import {addPostApi, deletePostApi, editPostApi, getAllPostsApi, getSinglePostApi} from "../../core/api";
 
 function* getPostsGen(action) {
     try {
-        const payload = yield getAllPosts();
-
+        const payload = yield getAllPostsApi();
         yield put(getPostsSuccess(payload.data));
     } catch (e) {
         console.log('error', e);
@@ -50,7 +51,7 @@ function* deletePostGen(action) {
 
 function* getSinglePostGen(action) {
     try {
-        const response = yield getSinglePost(action.payload);
+        const response = yield getSinglePostApi(action.payload);
         const data = yield response.data;
 
         yield put(getSinglePostSuccess(data))
@@ -64,7 +65,7 @@ function* getSinglePostGen(action) {
 function* editPostGen(action) {
     try {
         console.log('edit post', action.payload);
-        const respone = yield editPost(action.payload._id, action.payload);
+        const respone = yield editPostApi(action.payload._id, action.payload);
         console.log('respone', respone);
         const data = yield respone.data;
 

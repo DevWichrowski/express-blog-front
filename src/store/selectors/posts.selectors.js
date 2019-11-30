@@ -7,7 +7,7 @@ export const getAllPosts = createSelector(
     state => state.posts
 );
 
-export const getSinglePost = createSelector(
+export const getSinglePostSelector = createSelector(
     selectPosts,
     state => state.singlePost
 );
