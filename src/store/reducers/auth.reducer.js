@@ -22,6 +22,19 @@ export const authReducer = (state = initialState, action) =>
                 draft.pending = false;
                 break;
             }
+            case AuthActions.LOGOUT_ALL_PENDING: {
+                draft.pending = true;
+                break;
+            }
+            case AuthActions.LOGOUT_ALL_SUCCESS: {
+                draft.pending = false;
+                localStorage.removeItem("token");
+                break;
+            }
+            case AuthActions.LOGOUT_ALl_FAILURE: {
+                draft.pending = false;
+                break;
+            }
             default:
                 return state;
         }
