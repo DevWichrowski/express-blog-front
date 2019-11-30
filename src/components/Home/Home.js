@@ -3,15 +3,16 @@ import {connect} from "react-redux";
 import {getAllPosts} from "../../store/selectors/posts.selectors";
 import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import {getSinglePost} from "../../core/api";
-import {Redirect} from "react-router-dom";
-import {useHistory} from 'react-router-dom';
+import {useHistory} from "react-router-dom";
 import Chip from "@material-ui/core/Chip";
+import {getMyProfilePending} from "../../store/actions/users.actions";
 
 const Home = (props) => {
     const history = useHistory();
 
     useEffect(() => {
         props.getAllPosts();
+        props.getMyProfilePending();
     }, [])
 
     const editPost = id => history.push(`/edit-post/${id}`);
@@ -52,7 +53,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getAllPosts: payload => dispatch(getPostsPending(payload)),
     deletePost: payload => dispatch(deletePostPending(payload)),
-    getSinglePost: payload => dispatch(getSinglePostPending(payload))
+    getSinglePost: payload => dispatch(getSinglePostPending(payload)),
+    getMyProfilePending: payload => dispatch(getMyProfilePending(payload))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
