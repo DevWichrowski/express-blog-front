@@ -1,24 +1,25 @@
 import produce from 'immer';
-import * as AuthActions from "../actions/auth.actions";
+import * as UsersActions from "../actions/auth.actions";
 
 
 const initialState = {
     pending: false,
+    user: null,
 };
 
-export const authReducer = (state = initialState, action) =>
+export const usersReducer = (state = initialState, action) =>
     produce(state, draft => {
         switch (action.type) {
-            case AuthActions.LOGIN_PENDING: {
+            case UsersActions.LOGIN_PENDING: {
                 draft.pending = true;
                 break;
             }
-            case AuthActions.LOGIN_SUCCESS: {
+            case UsersActions.LOGIN_SUCCESS: {
                 draft.pending = false;
-                localStorage.setItem("token", action.payload.token)
+                draft.user = action.payload;
                 break;
             }
-            case AuthActions.LOGIN_FAILURE: {
+            case UsersActions.LOGIN_FAILURE: {
                 draft.pending = false;
                 break;
             }
