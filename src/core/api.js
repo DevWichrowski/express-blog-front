@@ -33,7 +33,6 @@ export const deletePostApi = (id) => {
 };
 
 export const getSinglePostApi = (id) => {
-    console.log('test')
     return axios.get(`${HOST}/posts/${id}`, {
         headers: {
             Accept: 'application/json',
@@ -68,6 +67,18 @@ export const getMyProfileApi = (id) => {
             Accept: 'application/json',
             'Content-type': 'application/json',
             'Authorization': `Bearer ${token}`,
+        },
+    });
+};
+
+export const logoutAllApi = (body) => {
+    const token = localStorage.token;
+
+    return axios.post(`${HOST}/users//me/logoutall`, body, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
     });
 };
