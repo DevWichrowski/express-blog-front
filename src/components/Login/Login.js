@@ -43,7 +43,7 @@ const Login = props => {
             </form>
         </div>
     );
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     login: payload => dispatch(loginPending(payload))

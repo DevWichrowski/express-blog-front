@@ -19,19 +19,19 @@ const EditPost = props => {
     const [tempTag, setTempTag] = useState(null);
     const [postTags, setTags] = useState([]);
 
-    // useEffect(() => {
-    //     axios.get(`${HOST}/posts/${id}`, {
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-type': 'application/json',
-    //         },
-    //     })
-    //         .then(res => {
-    //             setPost({...res.data});
-    //             setTags(res.data.tags);
-    //         })
-    //         .catch(e => console.log('Error', e));
-    // }, []);
+    useEffect(() => {
+        axios.get(`${HOST}/posts/${id}`, {
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json',
+            },
+        })
+            .then(res => {
+                setPost({...res.data});
+                setTags(res.data.tags);
+            })
+            .catch(e => console.log('Error', e));
+    }, []);
 
     const setPostTitle = e => setPost({...post, title: e.target.value});
     const setPostDescription = e => setPost({...post, description: e.target.value});

@@ -9,7 +9,7 @@ const AdminPosts = (props) => {
     const history = useHistory();
 
     useEffect(() => {
-        // props.getAllPostsApi();
+        props.getAllPosts();
     }, [])
 
     const editPost = id => history.push(`/edit-post/${id}`);

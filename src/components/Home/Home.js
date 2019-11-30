@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {getAllPosts} from "../../store/selectors/posts.selectors";
+import {getAllPosts, getSinglePostSelector} from "../../store/selectors/posts.selectors";
 import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import {useHistory} from "react-router-dom";
 import Chip from "@material-ui/core/Chip";
 import {getMyProfilePending} from "../../store/actions/users.actions";
-import {getSinglePostApi} from "../../core/api";
 
 const Home = (props) => {
     const history = useHistory();
@@ -13,10 +12,10 @@ const Home = (props) => {
     useEffect(() => {
         props.getAllPosts();
         props.getMyProfilePending();
-    }, [])
+    }, []);
 
     const editPost = id => history.push(`/edit-post/${id}`);
-    const goToPost = post => history.push(`/post/${post.title}`)
+    const goToPost = post => history.push(`/post/${post.title}`);
 
     return (
         <div>
@@ -46,7 +45,7 @@ const Home = (props) => {
 
 const mapStateToProps = state => ({
     allPosts: getAllPosts(state),
-    singlePost: getSinglePostApi(state)
+    singlePost: getSinglePostSelector(state)
 });
 
 
