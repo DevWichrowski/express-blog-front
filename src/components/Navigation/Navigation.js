@@ -14,10 +14,6 @@ const Navigation = props => {
     const {loggedUser} = props;
 
     useEffect(() => {
-        // if (loggedUser == null && localStorage.getItem('token') != null) {
-        //     props.getMyProfilePending();
-        // }
-
         if(localStorage.getItem('token') && loggedUser == null){
                 props.getMyProfilePending();
         }
@@ -53,7 +49,7 @@ const Navigation = props => {
                     </div>
 
                     <div className="nav-right-column">
-                        {loggedUser ? (<NavLink exact to="/home" onClick={props.logoutAll}>
+                        {loggedUser ? (<NavLink exact to="/home" onClick={() => props.logoutAll()}>
                             <Typography color="inherit" className="navigation-link">
                                 Logout
                             </Typography>
