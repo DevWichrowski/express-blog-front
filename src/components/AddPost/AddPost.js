@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import "./AddPost.scss"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {addPostPending} from "../../store/actions/posts.actions";
@@ -22,7 +23,6 @@ const AddPost = props => {
     const [postImgUrl, setPostImgUrl] = useState(null);
     const [postTags, setPostTags] = useState([]);
     const [tempTag, setTempTag] = useState(null);
-
 
 
     const submitPost = (e) => {
@@ -53,10 +53,9 @@ const AddPost = props => {
     };
 
     return (
-        <div>
+        <div className="add-post">
             <h1>Add post</h1>
-            <form style={{display: 'flex', flexDirection: 'column', width: '60%', margin: '0 auto'}} noValidate
-                  autoComplete="off">
+            <form noValidate autoComplete="off" className="add-post-container">
                 <TextField id="standard-basic" label="Title" onChange={e => setPostTitle(e.target.value)}/>
                 <TextField id="standard-basic" label="Description" onChange={e => setPostDesc(e.target.value)}/>
                 <TextField id="standard-basic" label="Image url" onChange={e => setPostImgUrl(e.target.value)}/>
@@ -74,7 +73,12 @@ const AddPost = props => {
                     Submit
                 </Button>
                 {postImgUrl != null ? <img src={postImgUrl} alt="postImgUrl"
-                                           style={{maxWidth: '500px', maxHeight: '500px', margin: '0 auto', marginTop: '50px;'}}/> : null}
+                                           style={{
+                                               maxWidth: '500px',
+                                               maxHeight: '500px',
+                                               margin: '0 auto',
+                                               marginTop: '50px;'
+                                           }}/> : null}
 
             </form>
         </div>
