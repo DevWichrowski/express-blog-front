@@ -1,12 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Login.scss";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {deletePostPending, getPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import {connect} from "react-redux";
 import {loginPending} from "../../store/actions/auth.actions";
+import {getUserSelector} from "../../store/selectors/users.selectors";
+import {useHistory} from "react-router-dom";
+import {getAllPosts} from "../../store/selectors/posts.selectors";
 
 const Login = props => {
+    const {loggedUser} = props;
+    const history = useHistory();
+
+    useEffect(() => {
+        if (loggedUser != null) {
+            history.push('/')
+        }
+    }, [loggedUser]);
 
     const [login, setLogin] = useState(null);
     const [password, setPassword] = useState(null);
@@ -45,8 +55,14 @@ const Login = props => {
     );
 };
 
+const mapStateToProps = state => ({
+    loggedUser: getUserSelector(state),
+    allPosts: getAllPosts(state),
+});
+
+
 const mapDispatchToProps = dispatch => ({
     login: payload => dispatch(loginPending(payload))
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

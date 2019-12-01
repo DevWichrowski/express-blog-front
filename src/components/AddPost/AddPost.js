@@ -1,17 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {addPostPending} from "../../store/actions/posts.actions";
 import {connect} from "react-redux";
 import Chip from "@material-ui/core/Chip";
 import * as uuid from "uuid";
+import {useHistory} from "react-router-dom";
+import {getUserSelector} from "../../store/selectors/users.selectors";
 
 const AddPost = props => {
+    const {loggedUser} = props;
+    const history = useHistory();
+    useEffect(() => {
+        if (loggedUser == null) {
+            history.push('/')
+        }
+    }, [loggedUser]);
+
     const [postTitle, setPostTitle] = useState(null);
     const [postDesc, setPostDesc] = useState(null);
     const [postImgUrl, setPostImgUrl] = useState(null);
     const [postTags, setPostTags] = useState([]);
     const [tempTag, setTempTag] = useState(null);
+
 
 
     const submitPost = (e) => {
@@ -70,9 +81,12 @@ const AddPost = props => {
     );
 };
 
+const mapStateToProps = state => ({
+    loggedUser: getUserSelector(state),
+});
 
 const mapDispatchToProps = dispatch => ({
     addPost: payload => dispatch(addPostPending(payload))
 });
 
-export default connect(null, mapDispatchToProps)(AddPost);
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost);
