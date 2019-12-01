@@ -8,6 +8,10 @@ import Chip from "@material-ui/core/Chip";
 import * as uuid from "uuid";
 import {useHistory} from "react-router-dom";
 import {getUserSelector} from "../../store/selectors/users.selectors";
+import {Editor} from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+
 
 const AddPost = props => {
     const {loggedUser} = props;
@@ -23,15 +27,18 @@ const AddPost = props => {
     const [postImgUrl, setPostImgUrl] = useState(null);
     const [postTags, setPostTags] = useState([]);
     const [tempTag, setTempTag] = useState(null);
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
 
     const submitPost = (e) => {
-        props.addPost({
-            title: postTitle,
-            description: postDesc,
-            imageUrl: postImgUrl,
-            tags: postTags,
-        })
+        // props.addPost({
+        //     title: postTitle,
+        //     description: postDesc,
+        //     imageUrl: postImgUrl,
+        //     tags: postTags,
+        //     content: editorState,
+        // })
+        console.log('editor state', editorState);
     };
 
     const saveTempTag = e => {
@@ -54,31 +61,42 @@ const AddPost = props => {
 
     return (
         <div className="add-post">
-            <h1>Add post</h1>
+            <h3>Add a new post</h3>
             <form noValidate autoComplete="off" className="add-post-container">
-                <TextField id="standard-basic" label="Title" onChange={e => setPostTitle(e.target.value)}/>
-                <TextField id="standard-basic" label="Description" onChange={e => setPostDesc(e.target.value)}/>
-                <TextField id="standard-basic" label="Image url" onChange={e => setPostImgUrl(e.target.value)}/>
-                <TextField id="standard-basic" label="Tags" onChange={e => saveTempTag(e.target.value)}
+                <TextField className="text-field" id="standard-basic" variant="outlined" label="Title"
+                           onChange={e => setPostTitle(e.target.value)}/>
+                <TextField className="text-field" id="standard-basic" variant="outlined" label="Description"
+                           onChange={e => setPostDesc(e.target.value)}/>
+                <TextField className="text-field" id="standard-basic" variant="outlined" label="Image url"
+                           onChange={e => setPostImgUrl(e.target.value)}/>
+                {postImgUrl != null ? <img src={postImgUrl} alt={postTitle} className="post-image"/> : null}
+
+                <TextField id="standard-basic" label="Tags for post" variant="outlined"
+                           onChange={e => saveTempTag(e.target.value)}
                            onKeyPress={e => saveTagToArr(e)} value={tempTag ? tempTag.value : ''}/>
-                <div>
-                    {postTags != null && postTags.length > 0 ? postTags.map(mappedTag => {
+
+                <div className="tags-container">
+                    {postTags != null && postTags.length > 0 ? postTags.map((mappedTag, index) => {
                         return (
-                            <Chip label={mappedTag.value} color="primary" onDelete={() => deleteTag(mappedTag)}/>
+
+                            <Chip key={index} label={mappedTag.value} color="primary"
+                                  onDelete={() => deleteTag(mappedTag)}/>
+
                         )
                     }) : null}
                 </div>
+
+                <Editor
+                    editorState={editorState}
+                    toolbarClassName="html-editor-toolbar"
+                    wrapperClassName="html-editor-wrapper"
+                    editorClassName="html-editor"
+                    onEditorStateChange={setEditorState}
+                />
                 <br/>
                 <Button variant="contained" color="primary" onClick={submitPost}>
                     Submit
                 </Button>
-                {postImgUrl != null ? <img src={postImgUrl} alt="postImgUrl"
-                                           style={{
-                                               maxWidth: '500px',
-                                               maxHeight: '500px',
-                                               margin: '0 auto',
-                                               marginTop: '50px;'
-                                           }}/> : null}
 
             </form>
         </div>
