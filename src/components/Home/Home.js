@@ -14,7 +14,7 @@ const Home = (props) => {
     }, []);
 
     const editPost = id => history.push(`/edit-post/${id}`);
-    const goToPost = post => history.push(`/post/${post.title}`);
+    const goToPost = post => history.push(`/one-post/${post._id}`);
 
     return (
         <div>

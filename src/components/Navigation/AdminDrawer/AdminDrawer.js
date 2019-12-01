@@ -15,9 +15,11 @@ const AdminDrawer = props => {
                 <ListItem button key="My account">
                     My account
                 </ListItem>
+                <NavLink exact to="/manage-posts">
                 <ListItem button key="Administrate posts">
                     Administrate posts
                 </ListItem>
+                </NavLink>
                 <NavLink exact to="/add-post">
                     <ListItem button key="Add posts">
                         Add posts
