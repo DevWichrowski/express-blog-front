@@ -94,7 +94,7 @@ const AddPost = props => {
                     onEditorStateChange={setEditorState}
                 />
                 <br/>
-                <Button variant="contained" color="primary" onClick={submitPost}>
+                <Button className="post-button-submit" variant="contained" color="primary" onClick={submitPost}>
                     Submit
                 </Button>
 
