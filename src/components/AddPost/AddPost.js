@@ -10,7 +10,9 @@ import {useHistory} from "react-router-dom";
 import {getUserSelector} from "../../store/selectors/users.selectors";
 import {Editor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import {EditorState, convertFromRaw, convertToRaw} from 'draft-js';
+import {stateToHTML} from 'draft-js-export-html';
+import draftToHtml from 'draftjs-to-html';
 
 
 const AddPost = props => {
@@ -38,7 +40,8 @@ const AddPost = props => {
         //     tags: postTags,
         //     content: editorState,
         // })
-        console.log('editor state', editorState);
+        // console.log('editor state', editorState);
+        console.log('convertToRaw(this.state.editorState.getCurrentContent())', draftToHtml(convertToRaw(editorState.getCurrentContent())))
     };
 
     const saveTempTag = e => {
@@ -91,11 +94,11 @@ const AddPost = props => {
                     toolbarClassName="html-editor-toolbar"
                     wrapperClassName="html-editor-wrapper"
                     editorClassName="html-editor"
-                    onEditorStateChange={setEditorState}
+                    onEditorStateChange={editorState => setEditorState(editorState)}
                 />
                 <br/>
                 <Button className="post-button-submit" variant="contained" color="primary" onClick={submitPost}>
-                    Submit
+                    Create new post
                 </Button>
 
             </form>
