@@ -10,13 +10,23 @@ import "./EditPost.scss";
 import Chip from "@material-ui/core/Chip";
 import * as uuid from "uuid";
 import {Editor} from "react-draft-wysiwyg";
-import {EditorState} from "draft-js";
+import {ContentState, convertFromHTML, EditorState} from 'draft-js';
 
 const EditPost = props => {
     let {id} = useParams();
     const [post, setPost] = useState();
     const [tempTag, setTempTag] = useState(null);
     const [postTags, setTags] = useState([]);
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+    const onContentStateChange = blocks => {
+        const blocksFromHtml = convertFromHTML(blocks);
+
+        const {contentBlocks, entityMap} = blocksFromHtml;
+        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+        const editorState = EditorState.createWithContent(contentState);
+        setEditorState(editorState);
+    };
 
     useEffect(() => {
         axios.get(`${HOST}/posts/${id}`, {
@@ -28,6 +38,7 @@ const EditPost = props => {
             .then(res => {
                 setPost({...res.data});
                 setTags(res.data.tags);
+                onContentStateChange(res.data.content);
             })
             .catch(e => console.log('Error', e));
     }, []);
@@ -36,7 +47,7 @@ const EditPost = props => {
     const setPostDescription = e => setPost({...post, description: e.target.value});
     const setPostImageUrl = e => setPost({...post, imageUrl: e.target.value});
     const setPostTags = e => setPost({...post, tags: e});
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
 
     const submitPost = (e) => {
         props.editPost({
