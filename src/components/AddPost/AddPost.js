@@ -33,15 +33,13 @@ const AddPost = props => {
 
 
     const submitPost = (e) => {
-        // props.addPost({
-        //     title: postTitle,
-        //     description: postDesc,
-        //     imageUrl: postImgUrl,
-        //     tags: postTags,
-        //     content: editorState,
-        // })
-        // console.log('editor state', editorState);
-        console.log('convertToRaw(this.state.editorState.getCurrentContent())', draftToHtml(convertToRaw(editorState.getCurrentContent())))
+        props.addPost({
+            title: postTitle,
+            description: postDesc,
+            imageUrl: postImgUrl,
+            tags: postTags,
+            content: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+        })
     };
 
     const saveTempTag = e => {
