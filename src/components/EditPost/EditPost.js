@@ -10,7 +10,8 @@ import "./EditPost.scss";
 import Chip from "@material-ui/core/Chip";
 import * as uuid from "uuid";
 import {Editor} from "react-draft-wysiwyg";
-import {ContentState, convertFromHTML, EditorState} from 'draft-js';
+import {ContentState, convertFromHTML, convertToRaw, EditorState} from 'draft-js';
+import draftToHtml from "draftjs-to-html";
 
 const EditPost = props => {
     let {id} = useParams();
@@ -51,7 +52,9 @@ const EditPost = props => {
 
     const submitPost = (e) => {
         props.editPost({
-            ...post, tags: postTags
+            ...post,
+            tags: postTags,
+            content: draftToHtml(convertToRaw(editorState.getCurrentContent()))
         })
     };
 
@@ -72,11 +75,11 @@ const EditPost = props => {
             <h3>Edit post</h3>
             <form noValidate autoComplete="off" className="edit-post-container">
                 <TextField className="text-field" id="standard-basic" variant="outlined" label="Title"
-                           value={post ? post.title : ''}/>
+                           value={post ? post.title : ''} onChange={e => setPostTitle(e)}/>
                 <TextField className="text-field" id="standard-basic" variant="outlined" label="Description"
-                           value={post ? post.description : ''}/>
+                           value={post ? post.description : ''} onChange={e => setPostDescription(e)}/>
                 <TextField className="text-field" id="standard-basic" variant="outlined" label="Image url"
-                           value={post ? post.imageUrl : ''}/>
+                           value={post ? post.imageUrl : ''} onChange={e => setPostImageUrl(e)}/>
                 {post != null && post.imageUrl != null ?
                     <img src={post.imageUrl} alt={post.title} className="post-image"/> : null}
 
