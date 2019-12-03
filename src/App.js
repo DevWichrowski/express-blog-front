@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import Home from "./components/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route, Router} from "react-router-dom";
 import AddPost from "./components/AddPost/AddPost";
 import EditPost from "./components/EditPost/EditPost";
 import history from "./core/history";
@@ -13,7 +13,7 @@ import SinglePost from "./components/SinglePost/SinglePost";
 function App() {
     return (
         <div className="App">
-            <BrowserRouter history={history}>
+            <Router history={history}>
                 <Navigation/>
                 <Route exact path="/" component={Home}/>
                 <Route path="/add-post" component={AddPost}/>
@@ -21,7 +21,7 @@ function App() {
                 <Route path="/login" component={Login}/>
                 <Route path="/manage-posts" component={ManagePosts}/>
                 <Route path="/one-post/:id" component={SinglePost}/>
-            </BrowserRouter>
+            </Router>
         </div>
     );
 }

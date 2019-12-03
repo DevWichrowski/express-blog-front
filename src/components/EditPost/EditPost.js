@@ -3,15 +3,14 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {
-    editPostPending,
-    getSinglePostPending
-} from "../../store/actions/posts.actions";
+import {editPostPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import axios from "axios";
 import {HOST} from "../../core/api"
 import "./EditPost.scss";
 import Chip from "@material-ui/core/Chip";
 import * as uuid from "uuid";
+import {Editor} from "react-draft-wysiwyg";
+import {EditorState} from "draft-js";
 
 const EditPost = props => {
     let {id} = useParams();
@@ -37,6 +36,7 @@ const EditPost = props => {
     const setPostDescription = e => setPost({...post, description: e.target.value});
     const setPostImageUrl = e => setPost({...post, imageUrl: e.target.value});
     const setPostTags = e => setPost({...post, tags: e});
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     const submitPost = (e) => {
         props.editPost({
@@ -55,57 +55,46 @@ const EditPost = props => {
 
     const deleteTag = tag => setTags(postTags.filter(_tag => _tag.id !== tag.id));
 
+
     return (
         <div className="edit-post">
-            <h1>Edit post</h1>
-            <form style={{display: 'flex', flexDirection: 'column', width: '60%', margin: '0 auto'}} noValidate
-                  autoComplete="off">
-                <TextField
-                    id="standard-basic"
-                    label="Title"
-                    value={post ? post.title : ''}
-                    onChange={e => setPostTitle(e)}
-                />
-                <TextField
-                    id="standard-basic"
-                    label="Description"
-                    value={post ? post.description : ''}
-                    onChange={e => setPostDescription(e)}
-                />
-                <TextField
-                    id="standard-basic"
-                    label="Image url"
-                    value={post ? post.imageUrl : ''}
-                    onChange={e => setPostImageUrl(e)}
-                />
-                <TextField
-                    id="standard-basic"
-                    label="Tags"
-                    onChange={e => saveTempTag(e.target.value)}
-                    onKeyPress={e => saveTagToArr(e)}
-                    value={tempTag ? tempTag : ''}/>
-                <br/>
-                <div>
-                    {postTags != null && postTags.length > 0 ? postTags.map(tag => {
+            <h3>Edit post</h3>
+            <form noValidate autoComplete="off" className="edit-post-container">
+                <TextField className="text-field" id="standard-basic" variant="outlined" label="Title"
+                           value={post ? post.title : ''}/>
+                <TextField className="text-field" id="standard-basic" variant="outlined" label="Description"
+                           value={post ? post.description : ''}/>
+                <TextField className="text-field" id="standard-basic" variant="outlined" label="Image url"
+                           value={post ? post.imageUrl : ''}/>
+                {post != null && post.imageUrl != null ?
+                    <img src={post.imageUrl} alt={post.title} className="post-image"/> : null}
+
+                <TextField id="standard-basic" label="Tags for post" variant="outlined"
+                           onChange={e => saveTempTag(e.target.value)}
+                           onKeyPress={e => saveTagToArr(e)} value={tempTag ? tempTag.value : ''}/>
+
+                <div className="tags-container">
+                    {postTags != null && postTags.length > 0 ? postTags.map((mappedTag, index) => {
                         return (
-                            <Chip key={tag.id} label={tag.value} color="primary" onDelete={() => deleteTag(tag)}/>
+
+                            <Chip key={index} label={mappedTag.value} color="primary"
+                                  onDelete={() => deleteTag(mappedTag)}/>
+
                         )
                     }) : null}
                 </div>
 
+                <Editor
+                    editorState={editorState}
+                    toolbarClassName="html-editor-toolbar"
+                    wrapperClassName="html-editor-wrapper"
+                    editorClassName="html-editor"
+                    onEditorStateChange={editorState => setEditorState(editorState)}
+                />
                 <br/>
-                <Button variant="contained" color="primary" onClick={submitPost}>
-                    Submit
+                <Button className="post-button-submit" variant="contained" color="primary" onClick={submitPost}>
+                    Save changes
                 </Button>
-
-                {post != null ? <img src={post.imageUrl} alt="postImgUrl"
-                                     style={{
-                                         maxWidth: '500px',
-                                         maxHeight: '500px',
-                                         margin: '0 auto',
-                                         marginTop: '50px'
-                                     }}/> : null}
-
             </form>
         </div>
     );
