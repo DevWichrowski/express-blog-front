@@ -20,7 +20,7 @@ function App() {
                 <Route path="/edit-post/:id" component={EditPost}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/manage-posts" component={ManagePosts}/>
-                <Route path="/one-post/:id" component={SinglePost}/>
+                <Route path="/single-post/:id" component={SinglePost}/>
             </Router>
         </div>
     );

@@ -1,21 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+import "./SinglePost.scss";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {
-    editPostPending,
-    getSinglePostPending
-} from "../../store/actions/posts.actions";
+import {editPostPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import axios from "axios";
 import {HOST} from "../../core/api"
 import Chip from "@material-ui/core/Chip";
-import * as uuid from "uuid";
 
 const SinglePost = props => {
     let {id} = useParams();
     const [post, setPost] = useState();
-    const [setTags] = useState([]);
+    const [tags, setTags] = useState([]);
 
     useEffect(() => {
         axios.get(`${HOST}/posts/${id}`, {
@@ -32,8 +27,25 @@ const SinglePost = props => {
     }, []);
 
     return (
-        <div className="edit-post">
-            {console.log(post)}
+        <div className="single-post">
+            {console.log('post', post)}
+            <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
+            <div className="post-info">
+                <p>views: {post ? post.views : null}</p>
+                <p>read time: {post ? post.readTime : null}min</p>
+            </div>
+            <div className="post-tags">
+                {post && post.tags != null && post.tags.length > 0 ? post.tags.map((mappedTag, index) => {
+                    return (
+
+                        <Chip key={index} label={mappedTag.value} color="primary"/>
+
+                    )
+                }) : null}
+            </div>
+            <h1>{post ? post.title : null}</h1>
+            <p className="post-description">{post ? post.description : null}</p>
+            <p className="post-content" dangerouslySetInnerHTML={{__html: post ? post.content : null}}/>
         </div>
     );
 };

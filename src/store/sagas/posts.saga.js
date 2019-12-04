@@ -64,9 +64,7 @@ function* getSinglePostGen(action) {
 
 function* editPostGen(action) {
     try {
-        console.log('edit post', action.payload);
         const respone = yield editPostApi(action.payload._id, action.payload);
-        console.log('respone', respone);
         const data = yield respone.data;
 
         yield put(editPostSuccess(data))
