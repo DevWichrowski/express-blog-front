@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.scss';
+import "./styles/global.scss"
 import Home from "./components/Home/Home";
 import Navigation from "./components/Navigation/Navigation";
 import {Route, Router} from "react-router-dom";
@@ -15,12 +16,14 @@ function App() {
         <div className="App">
             <Router history={history}>
                 <Navigation/>
-                <Route exact path="/" component={Home}/>
-                <Route path="/add-post" component={AddPost}/>
-                <Route path="/edit-post/:id" component={EditPost}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/manage-posts" component={ManagePosts}/>
-                <Route path="/single-post/:id" component={SinglePost}/>
+                <div className="app-content">
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/add-post" component={AddPost}/>
+                    <Route path="/edit-post/:id" component={EditPost}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/manage-posts" component={ManagePosts}/>
+                    <Route path="/single-post/:id" component={SinglePost}/>
+                </div>
             </Router>
         </div>
     );

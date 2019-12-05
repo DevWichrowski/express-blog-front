@@ -29,24 +29,41 @@ const SinglePost = props => {
     return (
         <div className="single-post">
             {console.log('post', post)}
-            <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
-            <div className="post-info">
-                <p>views: {post ? post.views : null}</p>
-                <p>read time: {post ? post.readTime : null}min</p>
-            </div>
-            <div className="post-tags">
-                {post && post.tags != null && post.tags.length > 0 ? post.tags.map((mappedTag, index) => {
-                    return (
+            <div className="single-page-content">
+                <div className="left-column">
+                    <div className="title-container">
+                        <h1>{post ? post.title : null}</h1>
+                    </div>
 
-                        <Chip key={index} label={mappedTag.value} color="primary"/>
+                    <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
 
-                    )
-                }) : null}
+                    <p className="post-description">{post ? post.description : null}</p>
+                    <p className="post-content" dangerouslySetInnerHTML={{__html: post ? post.content : null}}/>
+                </div>
+                <div className="right-column">
+                    <div className="post-info-box">
+                        <h3>Details</h3>
+
+                        <div className="post-info">
+                            <p>views: {post ? post.views : null}</p>
+                            <p>read time: {post ? post.readTime : null}min</p>
+                        </div>
+
+                        <div className="post-tags">
+                            {post && post.tags != null && post.tags.length > 0 ? post.tags.map((mappedTag, index) => {
+                                return (
+
+                                    <Chip key={index} label={mappedTag.value}/>
+
+                                )
+                            }) : null}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1>{post ? post.title : null}</h1>
-            <p className="post-description">{post ? post.description : null}</p>
-            <p className="post-content" dangerouslySetInnerHTML={{__html: post ? post.content : null}}/>
+
         </div>
+
     );
 };
 

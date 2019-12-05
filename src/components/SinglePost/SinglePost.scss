@@ -1,8 +1,53 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+
 .single-post {
+  margin: 5% 0;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .single-page-content {
+    display: flex;
+
+
+    .title-container {
+      width: 82%;
+      margin: 0 auto;
+
+      h1 {
+        font-size: 32px;
+        line-height: 1.325;
+        text-align: left;
+      }
+    }
+
+    .left-column {
+      @include box-shadow;
+      background-color: $white;
+      width: 70%;
+      margin-right: 2%;
+      border-radius: 5px;
+    }
+
+    .right-column {
+      width: 28%;
+
+      p {
+        margin-top: 0;
+      }
+
+      .post-info-box {
+        margin-bottom: 5%;
+        @include post-box
+      }
+    }
+  }
 
   .post-image {
-    margin-top: 2%;
-    width: 70%;
+    //margin-top: 2%;
+    width: 100%;
   }
 
   .post-description {
