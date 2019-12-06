@@ -31,12 +31,10 @@ const SinglePost = props => {
             {console.log('post', post)}
             <div className="single-page-content">
                 <div className="left-column">
+                    <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
                     <div className="title-container">
                         <h1>{post ? post.title : null}</h1>
                     </div>
-
-                    <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
-
                     <p className="post-description">{post ? post.description : null}</p>
                     <p className="post-content" dangerouslySetInnerHTML={{__html: post ? post.content : null}}/>
                 </div>
