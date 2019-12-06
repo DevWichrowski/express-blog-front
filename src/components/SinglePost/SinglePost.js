@@ -10,6 +10,9 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import Avatar from "@material-ui/core/Avatar";
+import moment from "moment";
+import Tooltip from "@material-ui/core/Tooltip";
+import {Zoom} from "@material-ui/core";
 
 const SinglePost = props => {
     let {id} = useParams();
@@ -48,12 +51,19 @@ const SinglePost = props => {
 
                         <div className="post-info">
                             <div className="post-info-row">
-                                <div className="time-views"><AccessTimeIcon/> <p>{post ? post.readTime : null}min</p>
-                                </div>
-                                <div className="time-views"><VisibilityIcon/> <p>{post ? post.views : null}</p></div>
-                                <div className="time-views"><CalendarTodayIcon/> <p>10 april 2019</p></div>
+                                <Tooltip TransitionComponent={Zoom} title="Read time" aria-label="Read time" placement="top">
+                                    <div className="time-views"><AccessTimeIcon/>
+                                        <p>{post ? post.readTime : null}min</p></div>
+                                </Tooltip>
+                                <Tooltip TransitionComponent={Zoom} title="Views" aria-label="Views" placement="top">
+                                    <div className="time-views"><VisibilityIcon/> <p>{post ? post.views : null}</p>
+                                    </div>
+                                </Tooltip>
+                                <Tooltip TransitionComponent={Zoom} title="Creation date" aria-label="Creation date" placement="top">
+                                    <div className="time-views"><CalendarTodayIcon/>
+                                        <p>{moment(post ? post.date : null).format('DD MMM YYYY')}</p></div>
+                                </Tooltip>
                             </div>
-
                             <div className="author-row">
                                 <Avatar className="post-user-avatar" alt={`${post ? post.user.nickname : null}`}
                                         src="https://media.licdn.com/dms/image/C4D03AQHPJ5csW5ggrA/profile-displayphoto-shrink_200_200/0?e=1580947200&v=beta&t=7nrdYW-5SiT-Xa6XZQuBxkz6JtWxSPTFepHU5pkzqeI"/>
@@ -62,10 +72,11 @@ const SinglePost = props => {
                                 </h3>
                             </div>
                         </div>
+                    </div>
 
-
+                    <div className="post-info-box">
                         <div className="post-tags">
-                            <h3>Tags</h3>
+                            <h2>Tags</h2>
                             {post && post.tags != null && post.tags.length > 0 ? post.tags.map((mappedTag, index) => {
                                 return (
 
@@ -74,10 +85,6 @@ const SinglePost = props => {
                                 )
                             }) : null}
                         </div>
-                    </div>
-
-                    <div className="post-info-box">
-                        <h2>Tags</h2>
                     </div>
                 </div>
             </div>
