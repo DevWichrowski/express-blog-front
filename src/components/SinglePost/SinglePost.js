@@ -8,6 +8,7 @@ import {HOST} from "../../core/api"
 import Chip from "@material-ui/core/Chip";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 
 const SinglePost = props => {
     let {id} = useParams();
@@ -46,8 +47,9 @@ const SinglePost = props => {
 
                         <div className="post-info">
                             <div className="post-info-row">
-                                <div><AccessTimeIcon /> {post ? post.readTime : null}min</div>
-                                <div><VisibilityIcon /> {post ? post.views : null}</div>
+                                <div className="time-views"><AccessTimeIcon /> <p>{post ? post.readTime : null}min</p></div>
+                                <div className="time-views"><VisibilityIcon /> <p>{post ? post.views : null}</p></div>
+                                <div className="time-views"><CalendarTodayIcon /> <p>10 april 2019</p></div>
                             </div>
                         </div>
 

@@ -48,6 +48,19 @@
         align-content: center;
         justify-content: center;
       }
+
+      .time-views{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        p{
+          margin-left: 5px;
+          margin-top: 3px;
+        }
+      }
     }
   }
 
