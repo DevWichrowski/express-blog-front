@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const HOST = "http://localhost:3000";
+export const HOST = "https://wicher-node-js.herokuapp.com";
 
 export const getAllPostsApi = () => {
     return axios.get(`${HOST}/posts`, {
