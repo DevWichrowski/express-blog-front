@@ -10,6 +10,14 @@
   color: #FBFBFD !important;
 }
 
+.MuiSvgIcon-root{
+  color: $red!important;
+}
+
+body {
+  color: $black;
+}
+
 a {
   color: $orange !important;
   font-weight: bolder !important;

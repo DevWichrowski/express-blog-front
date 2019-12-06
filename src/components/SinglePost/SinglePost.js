@@ -6,6 +6,8 @@ import {editPostPending, getSinglePostPending} from "../../store/actions/posts.a
 import axios from "axios";
 import {HOST} from "../../core/api"
 import Chip from "@material-ui/core/Chip";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 
 const SinglePost = props => {
     let {id} = useParams();
@@ -40,11 +42,13 @@ const SinglePost = props => {
                 </div>
                 <div className="right-column">
                     <div className="post-info-box">
-                        <h3>Details</h3>
+                        <h2>Details</h2>
 
                         <div className="post-info">
-                            <p>views: {post ? post.views : null}</p>
-                            <p>read time: {post ? post.readTime : null}min</p>
+                            <div className="post-info-row">
+                                <div><AccessTimeIcon /> {post ? post.readTime : null}min</div>
+                                <div><VisibilityIcon /> {post ? post.views : null}</div>
+                            </div>
                         </div>
 
                         <div className="post-tags">

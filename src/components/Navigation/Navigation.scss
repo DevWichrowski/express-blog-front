@@ -1,8 +1,11 @@
+@import "../../styles/colors";
+
 .navigation {
   .navigation-bar {
     display: flex;
     flex-direction: row;
     width: 100%;
+    background-color: $black;
 
     .nav-left-column {
       display: flex;
