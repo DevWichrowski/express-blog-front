@@ -13,13 +13,13 @@
 
 
     .title-container {
-      width: 82%;
+      width: 90%;
       margin: 0 auto;
 
       h1 {
         font-size: 32px;
         line-height: 1.325;
-        text-align: left;
+        text-align: center;
       }
     }
 
@@ -51,12 +51,15 @@
   }
 
   .post-description {
-    margin: 0 auto;
-    width: 60%;
+    margin: 2% auto;
+    width: 80%;
+    text-align: center;
+    font-size: 12px;
   }
 
   .post-content {
     margin: 5% auto;
-    width: 60%;
+    width: 70%;
+    text-align: left;
   }
 }
