@@ -5,6 +5,7 @@ import {deletePostPending, getPostsPending, getSinglePostPending} from "../../st
 import {useHistory} from "react-router-dom";
 import Chip from "@material-ui/core/Chip";
 import {getMyProfilePending} from "../../store/actions/users.actions";
+import "./Home.scss";
 
 const Home = (props) => {
     const history = useHistory();
@@ -18,23 +19,19 @@ const Home = (props) => {
 
     return (
         <div>
-            <h1>HOME</h1>
+            {console.log(props.allPosts)}
+            <div className="main-post">
+                <div className="main-post-container">
+                    <img src={props.allPosts[0].imageUrl}/>
+                    <div>
+                        {props.allPosts[0].description}
+                    </div>
+                </div>
+            </div>
             {props.allPosts.map((post, index) => {
                 return (
                     <div key={post._id}>
-                        <hr/>
-                        <h1 onClick={() => goToPost(post)} style={{cursor: 'pointer'}}>{post.title}</h1>
-                        <img src={post.imageUrl} style={{width: '600px', height: '500px'}}/>
-                        <p>{post.description}</p>
-                        <p>Author: {post.user && post.user.nickname}</p>
-                        <div>
-                            {post != null && post.tags.length > 0 ? post.tags.map((tag, index) => {
-                                return (
-                                    <Chip key={index} label={tag.value} color="primary"/>
-                                )
-                            }) : null}
-                        </div>
-                        <hr/>
+
                     </div>
                 )
             })}

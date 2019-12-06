@@ -17,6 +17,9 @@ import {addPostApi, deletePostApi, editPostApi, getAllPostsApi, getSinglePostApi
 function* getPostsGen(action) {
     try {
         const payload = yield getAllPostsApi();
+        payload.data.sort(function(a,b){
+            return new Date(b.date) - new Date(a.date);
+        });
         yield put(getPostsSuccess(payload.data));
     } catch (e) {
         console.log('error', e);
