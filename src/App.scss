@@ -1,4 +1,9 @@
 @import "./styles/colors";
+@import "./styles/mixins";
+
+body {
+  background-color: #cfcfd4;
+}
 
 .App {
   text-align: center;
@@ -6,6 +11,6 @@
   .app-content {
     width: 100%;
     max-width: 1300px;
-    margin: 0 auto;
+    margin: 20px auto;
   }
 }

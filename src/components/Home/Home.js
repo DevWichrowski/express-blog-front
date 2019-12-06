@@ -6,6 +6,9 @@ import {useHistory} from "react-router-dom";
 import Chip from "@material-ui/core/Chip";
 import {getMyProfilePending} from "../../store/actions/users.actions";
 import "./Home.scss";
+import AwesomeSlider from 'react-awesome-slider';
+import AwesomeSliderStyles from '../../styles/slider-core.scss';
+
 
 const Home = (props) => {
     const history = useHistory();
@@ -19,22 +22,35 @@ const Home = (props) => {
 
     return (
         <div>
-            {console.log(props.allPosts)}
-            <div className="main-post">
-                <div className="main-post-container">
-                    <img src={props.allPosts[0].imageUrl}/>
-                    <div>
-                        {props.allPosts[0].description}
-                    </div>
-                </div>
-            </div>
-            {props.allPosts.map((post, index) => {
-                return (
-                    <div key={post._id}>
+            {props.allPosts.length !== 0 ?   <div>
+                <div>
+                <div className="main-post">
+                    {/*<div className="main-post-container">*/}
+                    {/*    <img src={props.allPosts[0].imageUrl}/>*/}
+                    {/*    <div className="desc">*/}
+                    {/*        {props.allPosts[0].title}*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
-                    </div>
-                )
-            })}
+
+                    <AwesomeSlider cssModule={AwesomeSliderStyles}>
+                        <div data-src={props.allPosts[3].imageUrl} />
+                        <div data-src={props.allPosts[1].imageUrl} />
+                        <div data-src={props.allPosts[2].imageUrl} />
+                    </AwesomeSlider>
+                </div>
+                </div>
+                <div className="all-posts">
+                {props.allPosts.map((post, index) => {
+                    return (
+                            <div>
+                                <img src={post.imageUrl}/>
+                            </div>
+                    )
+                })}
+                </div>
+            </div> : null}
+
         </div>
     );
 };
