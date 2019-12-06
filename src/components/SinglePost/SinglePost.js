@@ -9,6 +9,7 @@ import Chip from "@material-ui/core/Chip";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import Avatar from "@material-ui/core/Avatar";
 
 const SinglePost = props => {
     let {id} = useParams();
@@ -47,13 +48,24 @@ const SinglePost = props => {
 
                         <div className="post-info">
                             <div className="post-info-row">
-                                <div className="time-views"><AccessTimeIcon /> <p>{post ? post.readTime : null}min</p></div>
-                                <div className="time-views"><VisibilityIcon /> <p>{post ? post.views : null}</p></div>
-                                <div className="time-views"><CalendarTodayIcon /> <p>10 april 2019</p></div>
+                                <div className="time-views"><AccessTimeIcon/> <p>{post ? post.readTime : null}min</p>
+                                </div>
+                                <div className="time-views"><VisibilityIcon/> <p>{post ? post.views : null}</p></div>
+                                <div className="time-views"><CalendarTodayIcon/> <p>10 april 2019</p></div>
+                            </div>
+
+                            <div className="author-row">
+                                <Avatar className="post-user-avatar" alt={`${post ? post.user.nickname : null}`}
+                                        src="https://media.licdn.com/dms/image/C4D03AQHPJ5csW5ggrA/profile-displayphoto-shrink_200_200/0?e=1580947200&v=beta&t=7nrdYW-5SiT-Xa6XZQuBxkz6JtWxSPTFepHU5pkzqeI"/>
+                                <h3 className="user-nickname">
+                                    {post ? post.user.nickname : null}
+                                </h3>
                             </div>
                         </div>
 
+
                         <div className="post-tags">
+                            <h3>Tags</h3>
                             {post && post.tags != null && post.tags.length > 0 ? post.tags.map((mappedTag, index) => {
                                 return (
 
@@ -62,6 +74,10 @@ const SinglePost = props => {
                                 )
                             }) : null}
                         </div>
+                    </div>
+
+                    <div className="post-info-box">
+                        <h2>Tags</h2>
                     </div>
                 </div>
             </div>
