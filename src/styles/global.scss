@@ -10,6 +10,14 @@
   color: #FBFBFD !important;
 }
 
+.MuiSvgIcon-root{
+  color: $red!important;
+}
+
+body {
+  color: $black;
+}
+
 a {
   color: $orange !important;
   font-weight: bolder !important;
@@ -21,8 +29,10 @@ a {
 
 h2 {
   font-weight: lighter;
+  font-size: 24px;
 }
 
 h3 {
   font-weight: lighter;
+  font-size: 24px;
 }
