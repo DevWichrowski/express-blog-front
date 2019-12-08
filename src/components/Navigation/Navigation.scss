@@ -6,6 +6,7 @@
     flex-direction: row;
     width: 100%;
     background-color: $black;
+    justify-content: space-between;
 
     .nav-left-column {
       display: flex;
@@ -14,13 +15,16 @@
     .nav-right-column {
       display: flex;
       flex-direction: row;
-      margin-left: 70%;
+      justify-content: flex-end;
+
+      p {
+        margin-left: 20px;
+      }
     }
   }
 
   .navigation-link {
     color: white;
-    margin-left: 20px;
     font-weight: normal;
     outline: none;
     text-decoration: none !important;
