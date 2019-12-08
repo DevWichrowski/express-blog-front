@@ -13,6 +13,7 @@ import Avatar from "@material-ui/core/Avatar";
 import moment from "moment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Zoom} from "@material-ui/core";
+import PostInfoBox from "../shared/PostInfoBox/PostInfoBox";
 
 const SinglePost = props => {
     let {id} = useParams();
@@ -46,12 +47,11 @@ const SinglePost = props => {
                     <p className="post-content" dangerouslySetInnerHTML={{__html: post ? post.content : null}}/>
                 </div>
                 <div className="right-column">
-                    <div className="post-info-box">
-                        <h2>Details</h2>
-
+                    <PostInfoBox title={'Details'}>
                         <div className="post-info">
                             <div className="post-info-row">
-                                <Tooltip TransitionComponent={Zoom} title="Read time" aria-label="Read time" placement="top">
+                                <Tooltip TransitionComponent={Zoom} title="Read time" aria-label="Read time"
+                                         placement="top">
                                     <div className="time-views"><AccessTimeIcon/>
                                         <p>{post ? post.readTime : null}min</p></div>
                                 </Tooltip>
@@ -59,7 +59,8 @@ const SinglePost = props => {
                                     <div className="time-views"><VisibilityIcon/> <p>{post ? post.views : null}</p>
                                     </div>
                                 </Tooltip>
-                                <Tooltip TransitionComponent={Zoom} title="Creation date" aria-label="Creation date" placement="top">
+                                <Tooltip TransitionComponent={Zoom} title="Creation date" aria-label="Creation date"
+                                         placement="top">
                                     <div className="time-views"><CalendarTodayIcon/>
                                         <p>{moment(post ? post.date : null).format('DD MMM YYYY')}</p></div>
                                 </Tooltip>
@@ -72,11 +73,10 @@ const SinglePost = props => {
                                 </h3>
                             </div>
                         </div>
-                    </div>
+                    </PostInfoBox>
 
-                    <div className="post-info-box">
+                    <PostInfoBox title={'Tags'}>
                         <div className="post-tags">
-                            <h2>Tags</h2>
                             {post && post.tags != null && post.tags.length > 0 ? post.tags.map((mappedTag, index) => {
                                 return (
 
@@ -85,7 +85,7 @@ const SinglePost = props => {
                                 )
                             }) : null}
                         </div>
-                    </div>
+                    </PostInfoBox>
                 </div>
             </div>
 
