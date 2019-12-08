@@ -68,7 +68,7 @@ const ManagePosts = props => {
                                     <NavLink to={`/edit-post/${row._id}`}>
                                         <EditIcon/>
                                     </NavLink>
-                                    <NavLink to={`/one-post/${row._id}`}>
+                                    <NavLink to={`/single-post/${row._id}`}>
                                         <VisibilityIcon/>
                                     </NavLink>
                                 </TableCell>
