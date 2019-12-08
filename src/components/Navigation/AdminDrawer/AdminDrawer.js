@@ -1,4 +1,5 @@
 import React from 'react';
+import "./AdminDrawer.scss";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -7,6 +8,7 @@ import {NavLink} from "react-router-dom";
 const AdminDrawer = props => {
     const sideList = side => (
         <div
+            className="admin-drawer"
             role="presentation"
             onClick={props.toggleDrawer(side, false)}
             onKeyDown={props.toggleDrawer(side, false)}

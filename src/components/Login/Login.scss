@@ -1,15 +1,36 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
+
 .login {
 
   .login-form {
-    width: 30%;
+    @include box-shadow;
+    width: 40%;
     margin: 0 auto;
-    border-radius: 50px;
+    padding: 40px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
 
-    .form-text-field{
+    .form-text-field {
       margin-top: 2%;
       margin-bottom: 2%;
     }
+  }
+
+  .MuiButton-containedPrimary {
+    background-color: $orange;
+  }
+
+  .MuiButton-containedPrimary:hover {
+    background-color: $orange;
+  }
+
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: $orange !important;
+  }
+
+  .MuiInputLabel-root.Mui-focused {
+    color: $orange;
   }
 }

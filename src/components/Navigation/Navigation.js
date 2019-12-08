@@ -49,7 +49,7 @@ const Navigation = props => {
                     </div>
 
                     <div className="nav-right-column">
-                        {loggedUser ? (<NavLink exact to="/home" onClick={() => props.logoutAll()}>
+                        {loggedUser ? (<NavLink exact to="/" onClick={() => props.logoutAll()}>
                             <Typography color="inherit" className="navigation-link">
                                 Logout
                             </Typography>
