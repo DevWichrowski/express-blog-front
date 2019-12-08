@@ -14,6 +14,7 @@ import moment from "moment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Zoom} from "@material-ui/core";
 import PostInfoBox from "../shared/PostInfoBox/PostInfoBox";
+import SmallPost from "../shared/SmallPost/SmallPost";
 
 const SinglePost = props => {
     let {id} = useParams();
@@ -84,6 +85,14 @@ const SinglePost = props => {
 
                                 )
                             }) : null}
+                        </div>
+                    </PostInfoBox>
+
+                    <PostInfoBox title={'Related posts'}>
+                        <div className="small-post">
+                            <SmallPost/>
+                            <SmallPost/>
+                            <SmallPost/>
                         </div>
                     </PostInfoBox>
                 </div>

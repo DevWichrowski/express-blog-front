@@ -10,13 +10,13 @@
   color: #FBFBFD !important;
 }
 
-.MuiSvgIcon-root{
-  color: $red!important;
+.MuiSvgIcon-root {
+  color: $red !important;
 }
 
 body {
   color: $black;
-  
+
   .MuiButton-containedPrimary {
     background-color: $orange;
   }
@@ -40,7 +40,7 @@ a {
   font-weight: bolder !important;
 }
 
- h1 {
+h1 {
   font-weight: lighter;
 }
 
@@ -52,4 +52,10 @@ h2 {
 h3 {
   font-weight: lighter;
   font-size: 24px;
+}
+
+h4 {
+  font-weight: lighter;
+  font-size: 18px;
+  text-transform: capitalize;
 }
