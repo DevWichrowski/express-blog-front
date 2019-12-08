@@ -17,20 +17,4 @@
       margin-bottom: 2%;
     }
   }
-
-  .MuiButton-containedPrimary {
-    background-color: $orange;
-  }
-
-  .MuiButton-containedPrimary:hover {
-    background-color: $orange;
-  }
-
-  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: $orange !important;
-  }
-
-  .MuiInputLabel-root.Mui-focused {
-    color: $orange;
-  }
 }

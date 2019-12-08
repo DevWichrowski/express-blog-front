@@ -21,7 +21,8 @@ const Login = props => {
     const [login, setLogin] = useState(null);
     const [password, setPassword] = useState(null);
 
-    const submit = () => {
+    const submit = e => {
+        e.preventDefault();
         props.login({
             login,
             password
@@ -31,7 +32,7 @@ const Login = props => {
     return (
         <div className="login">
             <h1>Login</h1>
-            <form className="login-form">
+            <form className="login-form" onSubmit={submit}>
                 <TextField
                     className="form-text-field"
                     id="outlined-basic"
@@ -47,7 +48,7 @@ const Login = props => {
                     type="password"
                     onChange={e => setPassword(e.target.value)}
                 />
-                <Button variant="contained" color="primary" onClick={submit}>
+                <Button variant="contained" color="primary" type="submit">
                     Login
                 </Button>
             </form>
