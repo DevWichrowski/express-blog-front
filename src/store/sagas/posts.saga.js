@@ -8,11 +8,20 @@ import {
     editPostSuccess,
     getPostsFailure,
     getPostsSuccess,
+    getRelatedPostsFailure,
+    getRelatedPostsSuccess,
     getSinglePostFailure,
     getSinglePostSuccess
 } from "../actions/posts.actions";
 
-import {addPostApi, deletePostApi, editPostApi, getAllPostsApi, getSinglePostApi} from "../../core/api";
+import {
+    addPostApi,
+    deletePostApi,
+    editPostApi,
+    getAllPostsApi,
+    getRelatedPostsApi,
+    getSinglePostApi
+} from "../../core/api";
 
 function* getPostsGen(action) {
     try {
@@ -74,12 +83,27 @@ function* editPostGen(action) {
     }
 }
 
+function* getRelatedPostsGen(action) {
+    try {
+        const response = yield getRelatedPostsApi(action.payload);
+        const data = yield response.data;
+
+        console.log('data', data)
+        yield put(getRelatedPostsSuccess(data))
+    } catch (e) {
+        console.log('error', e);
+        yield put(getRelatedPostsFailure(e))
+    }
+}
+
+
 export default function* postsSaga() {
     yield all([
         yield takeLatest('GET_POSTS_PENDING', getPostsGen),
         yield takeLatest('ADD_POSTS_PENDING', addPostGen),
         yield takeLatest('DELETE_POST_PENDING', deletePostGen),
         yield takeLatest('GET_SINGLE_POST_PENDING', getSinglePostGen),
-        yield takeLatest('EDIT_POST_PENDING', editPostGen)
+        yield takeLatest('EDIT_POST_PENDING', editPostGen),
+        yield takeLatest('GET_RELATED_POSTS_PENDING', getRelatedPostsGen)
     ]);
 }

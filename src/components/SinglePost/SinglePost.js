@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./SinglePost.scss";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {editPostPending, getSinglePostPending} from "../../store/actions/posts.actions";
+import {editPostPending, getRelatedPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
 import axios from "axios";
 import {HOST} from "../../core/api"
 import Chip from "@material-ui/core/Chip";
@@ -31,8 +31,11 @@ const SinglePost = props => {
             .then(res => {
                 setPost({...res.data});
                 setTags(res.data.tags);
+                props.getRelatedPosts({tags: res.data.tags.map(tag => tag.value)})
             })
             .catch(e => console.log('Error', e));
+
+
     }, []);
 
     return (
@@ -105,7 +108,8 @@ const SinglePost = props => {
 
 const mapDispatchToProps = dispatch => ({
     getSinglePost: payload => dispatch(getSinglePostPending(payload)),
-    editPost: payload => dispatch(editPostPending(payload))
+    editPost: payload => dispatch(editPostPending(payload)),
+    getRelatedPosts: payload => dispatch(getRelatedPostsPending(payload))
 });
 
 export default connect(null, mapDispatchToProps)(SinglePost);

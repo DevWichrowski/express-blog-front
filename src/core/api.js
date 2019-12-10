@@ -83,10 +83,10 @@ export const logoutAllApi = (body) => {
     });
 };
 
-export const getRelatedPosts = (body) => {
+export const getRelatedPostsApi = (body) => {
     const token = localStorage.token;
 
-    return axios.post(`${HOST}/related-posts`, body, {
+    return axios.post(`${HOST}/posts/related-posts`, body, {
         headers: {
             Accept: 'application/json',
             'Content-type': 'application/json',
