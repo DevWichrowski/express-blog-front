@@ -18,6 +18,11 @@ export const EDIT_POST_PENDING = 'EDIT_POST_PENDING';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
 export const EDIT_POST_FAILURE = 'EDIT_POST_FAILURE';
 
+export const GET_RELATED_POSTS_PENDING = 'GET_RELATED_POSTS_PENDING';
+export const GET_RELATED_POSTS_SUCCESS = 'GET_RELATED_POSTS_SUCCESS';
+export const GET_RELATED_POSTS_FAILURE = 'GET_RELATED_POSTS_FAILURE';
+
+
 export const getPostsPending = () => ({
     type: GET_POSTS_PENDING,
 });
@@ -88,5 +93,20 @@ export const editPostSuccess = payload => ({
 
 export const editPostFailure = payload => ({
     type: EDIT_POST_FAILURE,
+    payload
+});
+
+export const getRelatedPostsPending = payload => ({
+    type: GET_RELATED_POSTS_PENDING,
+    payload
+});
+
+export const getRelatedPostsSuccess = payload => ({
+    type: GET_RELATED_POSTS_SUCCESS,
+    payload
+});
+
+export const getRelatedPostsFailure = payload => ({
+    type: GET_RELATED_POSTS_FAILURE,
     payload
 });

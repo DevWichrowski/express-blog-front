@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const HOST = "https://wicher-node-js.herokuapp.com";
+export const HOST = "http://localhost:3000";
 
 export const getAllPostsApi = () => {
     return axios.get(`${HOST}/posts`, {
@@ -75,6 +75,18 @@ export const logoutAllApi = (body) => {
     const token = localStorage.token;
 
     return axios.post(`${HOST}/users//me/logoutall`, body, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    });
+};
+
+export const getRelatedPosts = (body) => {
+    const token = localStorage.token;
+
+    return axios.post(`${HOST}/related-posts`, body, {
         headers: {
             Accept: 'application/json',
             'Content-type': 'application/json',
