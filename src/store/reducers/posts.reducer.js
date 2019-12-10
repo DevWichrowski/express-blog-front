@@ -82,7 +82,7 @@ export const postsReducer = (state = initialState, action) =>
                 break;
             }
             case PostsActions.GET_RELATED_POSTS_SUCCESS: {
-                draft.relatedPosts = {...action.payload};
+                draft.relatedPosts = [...action.payload];
                 draft.pending = false;
                 break;
             }

@@ -11,3 +11,8 @@ export const getSinglePostSelector = createSelector(
     selectPosts,
     state => state.singlePost
 );
+
+export const getRelatedPostsSelector = createSelector(
+    selectPosts,
+    state => state.relatedPosts
+);

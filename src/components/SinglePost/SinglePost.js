@@ -14,6 +14,7 @@ import moment from "moment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Zoom} from "@material-ui/core";
 import PostInfoBox from "../shared/PostInfoBox/PostInfoBox";
+import {getRelatedPostsSelector} from "../../store/selectors/posts.selectors";
 import SmallPost from "../shared/SmallPost/SmallPost";
 
 const SinglePost = props => {
@@ -36,11 +37,11 @@ const SinglePost = props => {
             .catch(e => console.log('Error', e));
 
 
-    }, []);
+    }, [id]);
 
     return (
         <div className="single-post">
-            {console.log('post', post)}
+            {/*{console.log('post', post)}*/}
             <div className="single-page-content">
                 <div className="left-column">
                     <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
@@ -93,9 +94,18 @@ const SinglePost = props => {
 
                     <PostInfoBox title={'Related posts'}>
                         <div className="small-post">
-                            <SmallPost/>
-                            <SmallPost/>
-                            <SmallPost/>
+                            {post && props.relatedPosts && props.relatedPosts.length > 0 ? props.relatedPosts.filter(_post => _post.title !== post.title).map((post, index) => {
+                                return (
+                                    <SmallPost
+                                        key={index}
+                                        _id={post._id}
+                                        imageUrl={post.imageUrl}
+                                        title={post.title}
+                                        views={post.views}
+                                        readTime={post.readTime}
+                                    />
+                                )
+                            }) : null}
                         </div>
                     </PostInfoBox>
                 </div>
@@ -106,10 +116,15 @@ const SinglePost = props => {
     );
 };
 
+const mapStateToProps = state => ({
+    relatedPosts: getRelatedPostsSelector(state),
+});
+
 const mapDispatchToProps = dispatch => ({
     getSinglePost: payload => dispatch(getSinglePostPending(payload)),
     editPost: payload => dispatch(editPostPending(payload)),
     getRelatedPosts: payload => dispatch(getRelatedPostsPending(payload))
 });
 
-export default connect(null, mapDispatchToProps)(SinglePost);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SinglePost);

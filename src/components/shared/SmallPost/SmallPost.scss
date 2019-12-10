@@ -1,7 +1,18 @@
+@import "../../../styles/colors";
+
 .small-post {
   margin-top: 5%;
+
   .post-img {
     width: 100%;
+  }
+
+  a {
+    font-size: 18px;
+    color: $black !important;
+    font-weight: lighter !important;
+    margin-top: 10px;
+    margin-bottom: 0;
   }
 
   .sp-info {

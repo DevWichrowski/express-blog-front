@@ -87,8 +87,7 @@ function* getRelatedPostsGen(action) {
     try {
         const response = yield getRelatedPostsApi(action.payload);
         const data = yield response.data;
-
-        console.log('data', data)
+        
         yield put(getRelatedPostsSuccess(data))
     } catch (e) {
         console.log('error', e);

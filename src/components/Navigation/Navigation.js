@@ -13,9 +13,10 @@ import {logoutAllPending} from "../../store/actions/auth.actions";
 const Navigation = props => {
     const {loggedUser} = props;
 
+
     useEffect(() => {
-        if(localStorage.getItem('token') && loggedUser == null){
-                props.getMyProfilePending();
+        if (localStorage.getItem('token') && loggedUser == null) {
+            props.getMyProfilePending();
         }
 
     }, [loggedUser]);
@@ -53,7 +54,7 @@ const Navigation = props => {
                             <Typography color="inherit" className="navigation-link">
                                 Logout
                             </Typography>
-                        </NavLink>) : (<NavLink exact to="/login">
+                        </NavLink>) : (<NavLink to="/login">
                             <Typography color="inherit" className="navigation-link">
                                 Login
                             </Typography>
