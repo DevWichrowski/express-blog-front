@@ -61,7 +61,7 @@ const EditPost = props => {
     const saveTempTag = e => setTempTag(e);
 
     const saveTagToArr = e => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && postTags.length < 5) {
             setTags([...postTags, {id: uuid(), value: e.target.value}]);
             setTempTag(null);
         }

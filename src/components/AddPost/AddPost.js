@@ -11,7 +11,6 @@ import {getUserSelector} from "../../store/selectors/users.selectors";
 import {Editor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {EditorState, convertFromRaw, convertToRaw} from 'draft-js';
-import {stateToHTML} from 'draft-js-export-html';
 import draftToHtml from 'draftjs-to-html';
 
 
@@ -50,7 +49,7 @@ const AddPost = props => {
     };
 
     const saveTagToArr = e => {
-        if (e.key === "Enter") {
+        if (e.key === "Enter" && postTags.length < 5) {
             setPostTags([...postTags, tempTag]);
             setTempTag(null);
         }
