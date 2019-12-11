@@ -151,10 +151,7 @@ const SinglePost = props => {
                     </div>
                 </Slider>
             </div>
-
-
         </div>
-
     );
 };
 
