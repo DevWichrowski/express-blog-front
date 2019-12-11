@@ -16,11 +16,27 @@ import {Zoom} from "@material-ui/core";
 import PostInfoBox from "../shared/PostInfoBox/PostInfoBox";
 import {getRelatedPostsSelector} from "../../store/selectors/posts.selectors";
 import SmallPost from "../shared/SmallPost/SmallPost";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 
 const SinglePost = props => {
     let {id} = useParams();
     const [post, setPost] = useState();
     const [tags, setTags] = useState([]);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 2000,
+        cssEase: "linear"
+    };
 
     useEffect(() => {
         axios.get(`${HOST}/posts/${id}`, {
@@ -44,9 +60,10 @@ const SinglePost = props => {
             {/*{console.log('post', post)}*/}
             <div className="single-page-content">
                 <div className="left-column">
-                    <img className="post-image" src={post ? post.imageUrl : null} alt={post ? post.title : null}/>
+                    <img className="post-image" src={post ? post.imageUrl : <CircularProgress/>}
+                         alt={post ? post.title : null}/>
                     <div className="title-container">
-                        <h1>{post ? post.title : null}</h1>
+                        <h1>{post ? post.title : <CircularProgress/>}</h1>
                     </div>
                     <p className="post-description">{post ? post.description : null}</p>
                     <p className="post-content" dangerouslySetInnerHTML={{__html: post ? post.content : null}}/>
@@ -70,13 +87,14 @@ const SinglePost = props => {
                                         <p>{moment(post ? post.date : null).format('DD MMM YYYY')}</p></div>
                                 </Tooltip>
                             </div>
-                            <div className="author-row">
+                            {post && post.user.nickname ? (<div className="author-row">
                                 <Avatar className="post-user-avatar" alt={`${post ? post.user.nickname : null}`}
                                         src="https://media.licdn.com/dms/image/C4D03AQHPJ5csW5ggrA/profile-displayphoto-shrink_200_200/0?e=1580947200&v=beta&t=7nrdYW-5SiT-Xa6XZQuBxkz6JtWxSPTFepHU5pkzqeI"/>
                                 <h3 className="user-nickname">
                                     {post ? post.user.nickname : null}
                                 </h3>
-                            </div>
+                            </div>) : <CircularProgress color="secondary"/>}
+
                         </div>
                     </PostInfoBox>
 
@@ -105,11 +123,35 @@ const SinglePost = props => {
                                         readTime={post.readTime}
                                     />
                                 )
-                            }) : null}
+                            }) : <CircularProgress color="secondary"/>}
                         </div>
                     </PostInfoBox>
                 </div>
             </div>
+            <div className="newest-posts">
+                <h3>Newest posts</h3>
+                <Slider {...settings}>
+                    <div>
+                        <h3>1</h3>
+                    </div>
+                    <div>
+                        <h3>2</h3>
+                    </div>
+                    <div>
+                        <h3>3</h3>
+                    </div>
+                    <div>
+                        <h3>4</h3>
+                    </div>
+                    <div>
+                        <h3>5</h3>
+                    </div>
+                    <div>
+                        <h3>6</h3>
+                    </div>
+                </Slider>
+            </div>
+
 
         </div>
 
