@@ -101,9 +101,22 @@
     text-align: left;
   }
 
-  .newest-posts{
+  .newest-posts {
     margin-top: 2%;
     margin-bottom: 2%;
+    width: 100%;
     @include post-box
+  }
+
+  .newest-post-container {
+    min-height: 200px;
+    height: 200px;
+    width: 250px;
+    margin-left: 20px;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
   }
 }

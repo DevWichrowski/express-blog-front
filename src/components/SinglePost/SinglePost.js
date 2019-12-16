@@ -28,14 +28,13 @@ const SinglePost = props => {
     const [tags, setTags] = useState([]);
 
     const settings = {
-        dots: true,
+        // dots: true,
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 2000,
+        speed: 1000,
         autoplaySpeed: 2000,
-        cssEase: "linear"
     };
 
     useEffect(() => {
@@ -131,23 +130,29 @@ const SinglePost = props => {
             <div className="newest-posts">
                 <h3>Newest posts</h3>
                 <Slider {...settings}>
-                    <div>
-                        <h3>1</h3>
+                    <div className="newest-post-container">
+                        <img
+                            src="https://9.allegroimg.com/s512/03b7ce/88c0174e4059a16a849b8b6d47c9/Poszewka-Dakimakura-150x50-Manga-Anime-Hentai-049"/>
                     </div>
-                    <div>
-                        <h3>2</h3>
+                    <div className="newest-post-container">
+                        <img
+                            src="https://steamcommunity-a.akamaihd.net/economy/image/ppHD5hT1C-IVaNeRdCbdFsg1BnGB_bBCcGFB0iUx4s2PGjJgB7aDv9VMeoo1gWONYO63KqUHo9YtXFkHieItF5tPMUXNuMU0NxBUI5JUnRsI62JzvnewZqUwRqhLFABvP3AVXsTsmLKFUdNzMUVJ1aZ93w/360fx360f"/>
                     </div>
-                    <div>
-                        <h3>3</h3>
+                    <div className="newest-post-container">
+                        <img
+                            src="https://i.ytimg.com/vi/N-eHtDZuzpc/maxresdefault.jpg"/>
                     </div>
-                    <div>
-                        <h3>4</h3>
+                    <div className="newest-post-container">
+                        <img
+                            src="https://assets3.thrillist.com/v1/image/2813543/size/gn-gift_guide_variable_c.jpg"/>
                     </div>
-                    <div>
-                        <h3>5</h3>
+                    <div className="newest-post-container">
+                        <img
+                            src="https://lightnovel.pl/wp-content/uploads/2019/02/2019-luty.jpg"/>
                     </div>
-                    <div>
-                        <h3>6</h3>
+                    <div className="newest-post-container">
+                        <img
+                            src="https://www.download.net.pl/upload/News%20January%202015/waifu/anime.jpg"/>
                     </div>
                 </Slider>
             </div>
