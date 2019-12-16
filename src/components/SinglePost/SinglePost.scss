@@ -109,14 +109,30 @@
   }
 
   .newest-post-container {
-    min-height: 200px;
-    height: 200px;
-    width: 250px;
-    margin-left: 20px;
 
-    img {
-      height: 100%;
-      width: 100%;
+    .newest-post-img-container {
+      position: relative;
+      min-height: 200px;
+      height: 200px;
+      width: 250px;
+      padding: 0 10px;
+
+      .newest-post-title {
+        max-width: 90%;
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        background-color: rgba(24, 28, 29, 0.9);
+        color: white;
+        padding: 1% 1%;
+        font-size: 16px;
+        margin-left: 2%;
+      }
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }
