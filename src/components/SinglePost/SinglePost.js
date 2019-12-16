@@ -144,23 +144,21 @@ const SinglePost = props => {
                         </div>
                         <div className="newest-post-img-container">
                             <img
-                                src="https://i.ytimg.com/vi/N-eHtDZuzpc/maxresdefault.jpg"/>
-                            <h3 className="newest-post-title">Test</h3>
-                        </div>
-                        <div className="newest-post-img-container">
-                            <img
-                                src="https://assets3.thrillist.com/v1/image/2813543/size/gn-gift_guide_variable_c.jpg"/>
-                            <h3 className="newest-post-title">Test</h3>
-                        </div>
-                        <div className="newest-post-img-container">
-                            <img
-                                src="https://lightnovel.pl/wp-content/uploads/2019/02/2019-luty.jpg"/>
-                            <h3 className="newest-post-title">Test</h3>
-                        </div>
-                        <div className="newest-post-img-container">
-                            <img
                                 src="https://www.download.net.pl/upload/News%20January%202015/waifu/anime.jpg"/>
-                            <h3 className="newest-post-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum excepturi illo incidunt necessitatibus nobis.</h3>
+                            <div className="newest-post-info">
+                                <h3 className="newest-post-title">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                    elit. Eum excepturi illo incidunt necessitatibus nobis.</h3>
+                                <div className="post-info">
+                                    <div className="info-col">
+                                        <VisibilityIcon/>
+                                        <p className="info-text">1</p>
+                                    </div>
+                                    <div className="info-col">
+                                        <AccessTimeIcon/>
+                                        <p className="info-text">2min</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </Slider>
                 </div>
