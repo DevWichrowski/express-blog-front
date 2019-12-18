@@ -59,7 +59,7 @@ export const loginPostApi = body => {
     });
 };
 
-export const getMyProfileApi = (id) => {
+export const getMyProfileApi = id => {
     const token = localStorage.token;
 
     return axios.get(`${HOST}/users/me`, {
@@ -71,7 +71,7 @@ export const getMyProfileApi = (id) => {
     });
 };
 
-export const logoutAllApi = (body) => {
+export const logoutAllApi = body => {
     const token = localStorage.token;
 
     return axios.post(`${HOST}/users//me/logoutall`, body, {
@@ -83,14 +83,24 @@ export const logoutAllApi = (body) => {
     });
 };
 
-export const getRelatedPostsApi = (body) => {
-    const token = localStorage.token;
+export const getRelatedPostsApi = body => {
+    // const token = localStorage.token;
 
     return axios.post(`${HOST}/posts/related-posts`, body, {
         headers: {
             Accept: 'application/json',
             'Content-type': 'application/json',
-            'Authorization': `Bearer ${token}`
         },
     });
 };
+
+export const getNewestPostsApi = () => {
+    return axios.get(`${HOST}/posts/newest-posts`, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};
+
+
