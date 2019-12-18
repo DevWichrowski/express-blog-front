@@ -103,4 +103,11 @@ export const getNewestPostsApi = () => {
     });
 };
 
-
+export const getUsersApi = () => {
+    return axios.get(`${HOST}/users/`, {
+        headers: {
+            Accept: 'application/json',
+            'Content-type': 'application/json',
+        },
+    });
+};
