@@ -33,17 +33,6 @@ const SinglePost = props => {
     const [tags, setTags] = useState([]);
     const startPostRef = useRef();
 
-    const settings = {
-        // dots: true,
-        arrows: false,
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 3000,
-        autoplaySpeed: 5000,
-    };
-
     useEffect(() => {
         axios.get(`${HOST}/posts/${id}`, {
             headers: {
@@ -134,7 +123,7 @@ const SinglePost = props => {
                     </PostInfoBox>) : null}
                 </div>
             </div>
-            <NewestPosts element={props.newestPosts} settings={settings} elementRef={startPostRef}/>
+            <NewestPosts element={props.newestPosts} elementRef={startPostRef}/>
         </div>
     );
 };
