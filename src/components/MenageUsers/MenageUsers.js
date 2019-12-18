@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import "./MenageUsers.scss";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -9,9 +9,17 @@ import TableBody from "@material-ui/core/TableBody";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import {getUsersSelector} from "../../store/selectors/users.selectors";
+import {getUsersPending} from "../../store/actions/users.actions";
+import {connect} from "react-redux";
 
 
 const MenageUsers = props => {
+    useEffect(() => {
+        props.getUsers();
+    }, []);
+
+
     return (
         <div className="administrate-users">
             <Paper className="user-paper">
@@ -77,4 +85,12 @@ const MenageUsers = props => {
     );
 };
 
-export default MenageUsers;
+const mapStateToProps = state => ({
+    users: getUsersSelector(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+    getUsers: () => dispatch(getUsersPending()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenageUsers);
