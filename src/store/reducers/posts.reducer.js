@@ -5,6 +5,7 @@ const initialState = {
     posts: [],
     relatedPosts: [],
     singlePost: null,
+    newestPosts: [],
     pending: false,
 };
 
@@ -87,6 +88,19 @@ export const postsReducer = (state = initialState, action) =>
                 break;
             }
             case PostsActions.GET_RELATED_POSTS_FAILURE: {
+                draft.pending = false;
+                break;
+            }
+            case PostsActions.GET_NEWEST_POST_PENDING: {
+                draft.pending = true;
+                break;
+            }
+            case PostsActions.GET_NEWEST_POST_SUCCESS: {
+                draft.newestPosts = [...action.payload];
+                draft.pending = false;
+                break;
+            }
+            case PostsActions.GET_NEWEST_POST_FAILURE: {
                 draft.pending = false;
                 break;
             }
