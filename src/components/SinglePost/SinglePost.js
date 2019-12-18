@@ -54,6 +54,7 @@ const SinglePost = props => {
                 setPost({...res.data});
                 setTags(res.data.tags);
                 props.getRelatedPosts({tags: res.data.tags.map(tag => tag.value)})
+                props.getNewestPosts();
             })
             .catch(e => console.log('Error', e));
 
@@ -139,34 +140,26 @@ const SinglePost = props => {
                 <h3>Newest posts</h3>
                 <div className="newest-post-container">
                     <Slider {...settings}>
-                        <div className="newest-post-img-container">
-                            <img
-                                src="https://9.allegroimg.com/s512/03b7ce/88c0174e4059a16a849b8b6d47c9/Poszewka-Dakimakura-150x50-Manga-Anime-Hentai-049"/>
-                            <h3 className="newest-post-title">Test</h3>
-                        </div>
-                        <div className="newest-post-img-container">
-                            <img
-                                src="https://steamcommunity-a.akamaihd.net/economy/image/ppHD5hT1C-IVaNeRdCbdFsg1BnGB_bBCcGFB0iUx4s2PGjJgB7aDv9VMeoo1gWONYO63KqUHo9YtXFkHieItF5tPMUXNuMU0NxBUI5JUnRsI62JzvnewZqUwRqhLFABvP3AVXsTsmLKFUdNzMUVJ1aZ93w/360fx360f"/>
-                            <h3 className="newest-post-title">Test</h3>
-                        </div>
-                        <div className="newest-post-img-container">
-                            <img
-                                src="https://www.download.net.pl/upload/News%20January%202015/waifu/anime.jpg"/>
-                            <div className="newest-post-info">
-                                <h3 className="newest-post-title">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                    elit. Eum excepturi illo incidunt necessitatibus nobis.</h3>
-                                <div className="post-info">
-                                    <div className="info-col">
-                                        <VisibilityIcon/>
-                                        <p className="info-text">1</p>
-                                    </div>
-                                    <div className="info-col">
-                                        <AccessTimeIcon/>
-                                        <p className="info-text">2min</p>
+                        {props.newestPosts.map(post => {
+                            return (
+                                <div className="newest-post-img-container">
+                                    <img src={post.imageUrl}/>
+                                    <div className="newest-post-info">
+                                        <h3 className="newest-post-title">{post.title}</h3>
+                                        <div className="post-info">
+                                            <div className="info-col">
+                                                <VisibilityIcon/>
+                                                <p className="info-text">{post.views}</p>
+                                            </div>
+                                            <div className="info-col">
+                                                <AccessTimeIcon/>
+                                                <p className="info-text">{post.readTime}min</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            )
+                        })}
                     </Slider>
                 </div>
             </div>
