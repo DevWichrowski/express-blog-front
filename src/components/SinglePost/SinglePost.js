@@ -39,8 +39,8 @@ const SinglePost = props => {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 1000,
-        autoplaySpeed: 2000,
+        speed: 3000,
+        autoplaySpeed: 5000,
     };
 
     useEffect(() => {
@@ -63,8 +63,6 @@ const SinglePost = props => {
 
     return (
         <div className="single-post">
-            {console.log(id)}
-            {/*{console.log('post', post)}*/}
             <div className="single-page-content">
                 <div className="left-column">
                     <img className="post-image" src={post ? post.imageUrl : <CircularProgress/>}
@@ -143,7 +141,7 @@ const SinglePost = props => {
                         {props.newestPosts.map(post => {
                             return (
                                 <div className="newest-post-img-container">
-                                    <img src={post.imageUrl}/>
+                                    <img src={post.imageUrl} alt={post.title || 'My new post'}/>
                                     <div className="newest-post-info">
                                         <h3 className="newest-post-title">{post.title}</h3>
                                         <div className="post-info">
