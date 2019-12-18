@@ -91,16 +91,16 @@ export const postsReducer = (state = initialState, action) =>
                 draft.pending = false;
                 break;
             }
-            case PostsActions.GET_NEWEST_POST_PENDING: {
+            case PostsActions.GET_NEWEST_POSTS_PENDING: {
                 draft.pending = true;
                 break;
             }
-            case PostsActions.GET_NEWEST_POST_SUCCESS: {
+            case PostsActions.GET_NEWEST_POSTS_SUCCESS: {
                 draft.newestPosts = [...action.payload];
                 draft.pending = false;
                 break;
             }
-            case PostsActions.GET_NEWEST_POST_FAILURE: {
+            case PostsActions.GET_NEWEST_POSTS_FAILURE: {
                 draft.pending = false;
                 break;
             }

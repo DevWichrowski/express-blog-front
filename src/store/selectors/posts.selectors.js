@@ -17,7 +17,7 @@ export const getRelatedPostsSelector = createSelector(
     state => state.relatedPosts
 );
 
-export const getNewestPosts = createSelector(
+export const getNewestPostsSelector = createSelector(
     selectPosts,
     state => state.newestPosts,
 );

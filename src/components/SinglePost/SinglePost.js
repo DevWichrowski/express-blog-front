@@ -2,7 +2,12 @@ import React, {useEffect, useState} from 'react';
 import "./SinglePost.scss";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
-import {editPostPending, getRelatedPostsPending, getSinglePostPending} from "../../store/actions/posts.actions";
+import {
+    editPostPending,
+    getNewestPostsPending,
+    getRelatedPostsPending,
+    getSinglePostPending
+} from "../../store/actions/posts.actions";
 import axios from "axios";
 import {HOST} from "../../core/api"
 import Chip from "@material-ui/core/Chip";
@@ -14,7 +19,7 @@ import moment from "moment";
 import Tooltip from "@material-ui/core/Tooltip";
 import {Zoom} from "@material-ui/core";
 import PostInfoBox from "../shared/PostInfoBox/PostInfoBox";
-import {getRelatedPostsSelector} from "../../store/selectors/posts.selectors";
+import {getNewestPostsSelector, getRelatedPostsSelector} from "../../store/selectors/posts.selectors";
 import SmallPost from "../shared/SmallPost/SmallPost";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "slick-carousel/slick/slick.css";
@@ -171,12 +176,14 @@ const SinglePost = props => {
 
 const mapStateToProps = state => ({
     relatedPosts: getRelatedPostsSelector(state),
+    newestPosts: getNewestPostsSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({
     getSinglePost: payload => dispatch(getSinglePostPending(payload)),
     editPost: payload => dispatch(editPostPending(payload)),
-    getRelatedPosts: payload => dispatch(getRelatedPostsPending(payload))
+    getRelatedPosts: payload => dispatch(getRelatedPostsPending(payload)),
+    getNewestPosts: () => dispatch(getNewestPostsPending())
 });
 
 
