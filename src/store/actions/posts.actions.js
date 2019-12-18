@@ -22,6 +22,10 @@ export const GET_RELATED_POSTS_PENDING = 'GET_RELATED_POSTS_PENDING';
 export const GET_RELATED_POSTS_SUCCESS = 'GET_RELATED_POSTS_SUCCESS';
 export const GET_RELATED_POSTS_FAILURE = 'GET_RELATED_POSTS_FAILURE';
 
+export const GET_NEWEST_POST_PENDING = 'GET_NEWEST_POST_PENDING';
+export const GET_NEWEST_POST_SUCCESS = 'GET_NEWEST_POST_SUCCESS';
+export const GET_NEWEST_POST_FAILURE = 'GET_NEWEST_POST_FAILURE';
+
 
 export const getPostsPending = () => ({
     type: GET_POSTS_PENDING,
@@ -108,5 +112,20 @@ export const getRelatedPostsSuccess = payload => ({
 
 export const getRelatedPostsFailure = payload => ({
     type: GET_RELATED_POSTS_FAILURE,
+    payload
+});
+
+export const getNewestPostPending = payload => ({
+    type: GET_NEWEST_POST_PENDING,
+    payload
+});
+
+export const getNewestPostSuccess = payload => ({
+    type: GET_NEWEST_POST_SUCCESS,
+    payload
+});
+
+export const getNewestPostFailure = payload => ({
+    type: GET_NEWEST_POST_FAILURE,
     payload
 });

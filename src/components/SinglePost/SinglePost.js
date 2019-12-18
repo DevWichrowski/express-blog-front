@@ -107,11 +107,11 @@ const SinglePost = props => {
                                     <Chip key={index} label={mappedTag.value}/>
 
                                 )
-                            }) : null}
+                            }) : <h4>No tags</h4>}
                         </div>
                     </PostInfoBox>
 
-                    <PostInfoBox title={'Related posts'}>
+                    {post && props.relatedPosts && props.relatedPosts.length ? (<PostInfoBox title={'Related posts'}>
                         <div className="small-post">
                             {post && props.relatedPosts && props.relatedPosts.length > 0 ? props.relatedPosts.filter(_post => _post.title !== post.title).map((post, index) => {
                                 return (
@@ -126,7 +126,8 @@ const SinglePost = props => {
                                 )
                             }) : <CircularProgress color="secondary"/>}
                         </div>
-                    </PostInfoBox>
+                    </PostInfoBox>) : null}
+
                 </div>
             </div>
             <div className="newest-posts">
