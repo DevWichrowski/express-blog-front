@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import "./SinglePost.scss";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
@@ -31,6 +31,7 @@ const SinglePost = props => {
     let {id} = useParams();
     const [post, setPost] = useState();
     const [tags, setTags] = useState([]);
+    const startPostRef = useRef();
 
     const settings = {
         // dots: true,
@@ -62,7 +63,7 @@ const SinglePost = props => {
     }, [id]);
 
     return (
-        <div className="single-post">
+        <div className="single-post" ref={startPostRef}>
             <div className="single-page-content">
                 <div className="left-column">
                     <img className="post-image" src={post ? post.imageUrl : <CircularProgress/>}
@@ -131,38 +132,9 @@ const SinglePost = props => {
                             }) : <CircularProgress color="secondary"/>}
                         </div>
                     </PostInfoBox>) : null}
-
                 </div>
             </div>
-            <NewestPosts element={props.newestPosts} settings={settings}/>
-            {/*<div className="newest-posts">*/}
-            {/*    {console.log('props.newestPosts.', props.newestPosts)}*/}
-            {/*    <h3>Newest posts</h3>*/}
-            {/*    <div className="newest-post-container">*/}
-            {/*        <Slider {...settings}>*/}
-            {/*            {props.newestPosts.map(post => {*/}
-            {/*                return (*/}
-            {/*                    <div className="newest-post-img-container">*/}
-            {/*                        <img src={post.imageUrl} alt={post.title || 'My new post'}/>*/}
-            {/*                        <div className="newest-post-info">*/}
-            {/*                            <h3 className="newest-post-title">{post.title}</h3>*/}
-            {/*                            <div className="post-info">*/}
-            {/*                                <div className="info-col">*/}
-            {/*                                    <VisibilityIcon/>*/}
-            {/*                                    <p className="info-text">{post.views}</p>*/}
-            {/*                                </div>*/}
-            {/*                                <div className="info-col">*/}
-            {/*                                    <AccessTimeIcon/>*/}
-            {/*                                    <p className="info-text">{post.readTime}min</p>*/}
-            {/*                                </div>*/}
-            {/*                            </div>*/}
-            {/*                        </div>*/}
-            {/*                    </div>*/}
-            {/*                )*/}
-            {/*            })}*/}
-            {/*        </Slider>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <NewestPosts element={props.newestPosts} settings={settings} elementRef={startPostRef}/>
         </div>
     );
 };
