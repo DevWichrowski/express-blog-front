@@ -2,6 +2,10 @@
 @import "mixins";
 
 
+.action-icon {
+  cursor: pointer;
+}
+
 .MuiChip-root {
   @include box-shadow;
   background-color: $orange !important;

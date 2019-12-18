@@ -10,6 +10,7 @@ import history from "./core/history";
 import Login from "./components/Login/Login";
 import ManagePosts from "./components/ManagePosts/ManagePosts";
 import SinglePost from "./components/SinglePost/SinglePost";
+import MenageUsers from "./components/MenageUsers/MenageUsers";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/login" component={Login}/>
                     <Route path="/manage-posts" component={ManagePosts}/>
                     <Route path="/single-post/:id" component={SinglePost}/>
+                    <Route path="/menage-users" component={MenageUsers}/>
                 </div>
             </Router>
         </div>
