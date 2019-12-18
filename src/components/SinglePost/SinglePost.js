@@ -24,7 +24,7 @@ import SmallPost from "../shared/SmallPost/SmallPost";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import NewestPosts from "../shared/NewestPosts/NewestPosts";
 
 
 const SinglePost = props => {
@@ -134,33 +134,35 @@ const SinglePost = props => {
 
                 </div>
             </div>
-            <div className="newest-posts">
-                <h3>Newest posts</h3>
-                <div className="newest-post-container">
-                    <Slider {...settings}>
-                        {props.newestPosts.map(post => {
-                            return (
-                                <div className="newest-post-img-container">
-                                    <img src={post.imageUrl} alt={post.title || 'My new post'}/>
-                                    <div className="newest-post-info">
-                                        <h3 className="newest-post-title">{post.title}</h3>
-                                        <div className="post-info">
-                                            <div className="info-col">
-                                                <VisibilityIcon/>
-                                                <p className="info-text">{post.views}</p>
-                                            </div>
-                                            <div className="info-col">
-                                                <AccessTimeIcon/>
-                                                <p className="info-text">{post.readTime}min</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </Slider>
-                </div>
-            </div>
+            <NewestPosts element={props.newestPosts} settings={settings}/>
+            {/*<div className="newest-posts">*/}
+            {/*    {console.log('props.newestPosts.', props.newestPosts)}*/}
+            {/*    <h3>Newest posts</h3>*/}
+            {/*    <div className="newest-post-container">*/}
+            {/*        <Slider {...settings}>*/}
+            {/*            {props.newestPosts.map(post => {*/}
+            {/*                return (*/}
+            {/*                    <div className="newest-post-img-container">*/}
+            {/*                        <img src={post.imageUrl} alt={post.title || 'My new post'}/>*/}
+            {/*                        <div className="newest-post-info">*/}
+            {/*                            <h3 className="newest-post-title">{post.title}</h3>*/}
+            {/*                            <div className="post-info">*/}
+            {/*                                <div className="info-col">*/}
+            {/*                                    <VisibilityIcon/>*/}
+            {/*                                    <p className="info-text">{post.views}</p>*/}
+            {/*                                </div>*/}
+            {/*                                <div className="info-col">*/}
+            {/*                                    <AccessTimeIcon/>*/}
+            {/*                                    <p className="info-text">{post.readTime}min</p>*/}
+            {/*                                </div>*/}
+            {/*                            </div>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                )*/}
+            {/*            })}*/}
+            {/*        </Slider>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     );
 };
