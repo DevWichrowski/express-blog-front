@@ -57,6 +57,7 @@ const SinglePost = props => {
 
     return (
         <div className="single-post">
+            {console.log(id)}
             {/*{console.log('post', post)}*/}
             <div className="single-page-content">
                 <div className="left-column">
