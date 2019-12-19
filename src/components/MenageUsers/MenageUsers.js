@@ -30,7 +30,6 @@ const MenageUsers = props => {
                             <TableCell className="user-head-cell">Avatar</TableCell>
                             <TableCell className="user-head-cell">Nickname</TableCell>
                             <TableCell className="user-head-cell">Login</TableCell>
-                            <TableCell className="user-head-cell">Password</TableCell>
                             <TableCell className="user-head-cell">E-mail</TableCell>
                             <TableCell className="user-head-cell" align="right">Actions</TableCell>
                         </TableRow>
@@ -39,21 +38,17 @@ const MenageUsers = props => {
                         {users.map(user => (
                             <TableRow key={user._id}>
                                 <TableCell component="th" scope="row">
-                                    <Avatar alt={user.nickname} src={user.avatar || ''}/>
+                                    <Avatar alt={user.nickname} src={user.avatar}/>
                                 </TableCell>
                                 <TableCell component="th" scope="row">
-                                    {user.nickname || '-'}
+                                    {user.nickname}
                                 </TableCell>
                                 <TableCell>{user.login}</TableCell>
-                                <TableCell>password here</TableCell>
                                 <TableCell>{user.email}</TableCell>
                                 <TableCell align="right">
-                                    <DeleteIcon className="delete-icon"/>
+                                    <DeleteIcon className="action-icon"/>
                                     {/*<NavLink to={`/edit-post/${row._id}`}>*/}
-                                    <EditIcon/>
-                                    {/*</NavLink>*/}
-                                    {/*<NavLink to={`/single-post/${row._id}`}>*/}
-                                    <VisibilityIcon/>
+                                    <EditIcon className="action-icon"/>
                                     {/*</NavLink>*/}
                                 </TableCell>
                             </TableRow>

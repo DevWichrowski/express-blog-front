@@ -51,13 +51,11 @@ const SinglePost = props => {
 
     }, [id]);
 
-    console.log('props.post', post);
-
     return (
         <div className="single-post" ref={startPostRef}>
             <div className="single-page-content">
                 <div className="left-column">
-                    <img className="post-image" src={post ? post.imageUrl : <CircularProgress/>}
+                    <img className="post-image" src={post?.imageUrl ?? <CircularProgress/>}
                          alt={post ? post.title : null}/>
                     <div className="title-container">
                         <h1>{post ? post.title : <CircularProgress/>}</h1>
@@ -86,9 +84,9 @@ const SinglePost = props => {
                             </div>
                             {post && post.user.nickname ? (<div className="author-row">
                                 <Avatar className="post-user-avatar" alt={`${post ? post.user.nickname : null}`}
-                                        src={post.user.avatar}/>
+                                        src="https://media.licdn.com/dms/image/C4D03AQHPJ5csW5ggrA/profile-displayphoto-shrink_200_200/0?e=1580947200&v=beta&t=7nrdYW-5SiT-Xa6XZQuBxkz6JtWxSPTFepHU5pkzqeI"/>
                                 <h3 className="user-nickname">
-                                    {post ? post.user.nickname : null}
+                                    {post.user.nickname}
                                 </h3>
                             </div>) : <CircularProgress color="secondary"/>}
 
