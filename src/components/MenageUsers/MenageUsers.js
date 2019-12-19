@@ -15,6 +15,7 @@ import Avatar from "@material-ui/core/Avatar";
 import AddIcon from '@material-ui/icons/Add';
 import {seletAddUserModal} from "../../store/selectors/modals.selector";
 import {closeAddUserModal, showAddUserModal} from "../../store/actions/modals.actions";
+import AddUserModal from "./AddUserModal/AddUserModal";
 
 
 const MenageUsers = props => {
@@ -25,7 +26,7 @@ const MenageUsers = props => {
     const {users} = props;
     return (
         <div className="administrate-users">
-            <div className="buttons-container">
+            <div className="buttons-container" onClick={props.showAddUserModal}>
                 <div className="add-user-buttom">
                     <AddIcon/>
                     <p>Add User</p>
@@ -65,6 +66,7 @@ const MenageUsers = props => {
                     </TableBody>
                 </Table>
             </Paper>
+            <AddUserModal visible={props.addUserModal}/>
         </div>
     );
 };

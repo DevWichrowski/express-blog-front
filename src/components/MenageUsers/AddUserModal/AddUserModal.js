@@ -1,16 +1,19 @@
 import React from 'react';
 import "./AddUserModal.scss";
-import EasyModal from "../../shared/EasyModal/EasyModal";
 import {seletAddUserModal} from "../../../store/selectors/modals.selector";
 import {connect} from "react-redux";
 import {closeAddUserModal} from "../../../store/actions/modals.actions";
+import 'rodal/lib/rodal.css';
+import Rodal from 'rodal';
 
 const AddUserModal = props => {
     return (
-        <EasyModal visible={props.addUserModal} className="add-user-modal" closeModal={closeAddUserModal}>
-            <div>ASDASDASDA</div>
-            <button onClick={props.closeAddUserModal}>Close</button>
-        </EasyModal>
+        <Rodal visible={props.addUserModal} className="add-user-modal" onClose={props.closeAddUserModal}>
+            <div className="add-user-modal-content">
+                <div>ASDASDASDA</div>
+                <button onClick={props.closeAddUserModal}>Close</button>
+            </div>
+        </Rodal>
     );
 };
 
