@@ -26,8 +26,8 @@ const MenageUsers = props => {
     const {users} = props;
     return (
         <div className="administrate-users">
-            <div className="buttons-container" onClick={props.showAddUserModal}>
-                <div className="add-user-buttom">
+            <div className="buttons-container">
+                <div className="add-user-buttom" onClick={props.showAddUserModal}>
                     <AddIcon/>
                     <p>Add User</p>
                 </div>
