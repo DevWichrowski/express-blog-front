@@ -8,11 +8,11 @@ import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import VisibilityIcon from "@material-ui/icons/Visibility";
 import {getUsersSelector} from "../../store/selectors/users.selectors";
 import {getUsersPending} from "../../store/actions/users.actions";
 import {connect} from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
+import AddIcon from '@material-ui/icons/Add';
 
 
 const MenageUsers = props => {
@@ -23,6 +23,13 @@ const MenageUsers = props => {
     const {users} = props;
     return (
         <div className="administrate-users">
+            <div className="buttons-container">
+                <div className="add-user-buttom">
+                    <AddIcon/>
+                    <p>Add User</p>
+                </div>
+            </div>
+
             <Paper className="user-paper">
                 <Table className="user-table" aria-label="simple table">
                     <TableHead className="table-head">
