@@ -12,6 +12,7 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import {getUsersSelector} from "../../store/selectors/users.selectors";
 import {getUsersPending} from "../../store/actions/users.actions";
 import {connect} from "react-redux";
+import Avatar from "@material-ui/core/Avatar";
 
 
 const MenageUsers = props => {
@@ -19,7 +20,7 @@ const MenageUsers = props => {
         props.getUsers();
     }, []);
 
-
+    const {users} = props;
     return (
         <div className="administrate-users">
             <Paper className="user-paper">
@@ -35,49 +36,28 @@ const MenageUsers = props => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {/*{props.allPosts.map(row => (*/}
-                        <TableRow>
-                            <TableCell component="th" scope="row">
-                                (-,-)
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                Test
-                            </TableCell>
-                            <TableCell>asd</TableCell>
-                            <TableCell>asd</TableCell>
-                            <TableCell>asd</TableCell>
-                            <TableCell align="right">
-                                <DeleteIcon className="delete-icon"/>
-                                {/*<NavLink to={`/edit-post/${row._id}`}>*/}
-                                <EditIcon/>
-                                {/*</NavLink>*/}
-                                {/*<NavLink to={`/single-post/${row._id}`}>*/}
-                                <VisibilityIcon/>
-                                {/*</NavLink>*/}
-                            </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                            <TableCell component="th" scope="row">
-                                (-,-)
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                Test
-                            </TableCell>
-                            <TableCell>asd</TableCell>
-                            <TableCell>asd</TableCell>
-                            <TableCell>asd</TableCell>
-                            <TableCell align="right">
-                                <DeleteIcon className="action-icon"/>
-                                {/*<NavLink to={`/edit-post/${row._id}`}>*/}
-                                <EditIcon className="action-icon"/>
-                                {/*</NavLink>*/}
-                                {/*<NavLink to={`/single-post/${row._id}`}>*/}
-                                <VisibilityIcon className="action-icon"/>
-                                {/*</NavLink>*/}
-                            </TableCell>
-                        </TableRow>
-                        {/*))}*/}
+                        {users.map(user => (
+                            <TableRow key={user._id}>
+                                <TableCell component="th" scope="row">
+                                    <Avatar alt={user.nickname} src={user.avatar || ''}/>
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {user.nickname || '-'}
+                                </TableCell>
+                                <TableCell>{user.login}</TableCell>
+                                <TableCell>password here</TableCell>
+                                <TableCell>{user.email}</TableCell>
+                                <TableCell align="right">
+                                    <DeleteIcon className="delete-icon"/>
+                                    {/*<NavLink to={`/edit-post/${row._id}`}>*/}
+                                    <EditIcon/>
+                                    {/*</NavLink>*/}
+                                    {/*<NavLink to={`/single-post/${row._id}`}>*/}
+                                    <VisibilityIcon/>
+                                    {/*</NavLink>*/}
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </TableBody>
                 </Table>
             </Paper>
