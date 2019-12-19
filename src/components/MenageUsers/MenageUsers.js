@@ -13,6 +13,8 @@ import {getUsersPending} from "../../store/actions/users.actions";
 import {connect} from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import AddIcon from '@material-ui/icons/Add';
+import {seletAddUserModal} from "../../store/selectors/modals.selector";
+import {closeAddUserModal, showAddUserModal} from "../../store/actions/modals.actions";
 
 
 const MenageUsers = props => {
@@ -69,10 +71,13 @@ const MenageUsers = props => {
 
 const mapStateToProps = state => ({
     users: getUsersSelector(state),
+    addUserModal: seletAddUserModal(state)
 });
 
 const mapDispatchToProps = dispatch => ({
     getUsers: () => dispatch(getUsersPending()),
+    showAddUserModal: () => dispatch(showAddUserModal()),
+    closeAddUserModal: () => dispatch(closeAddUserModal())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenageUsers);
