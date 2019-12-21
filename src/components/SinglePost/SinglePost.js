@@ -105,7 +105,8 @@ const SinglePost = props => {
                         </div>
                     </PostInfoBox>
 
-                    {post && props.relatedPosts && props.relatedPosts.length ? (<PostInfoBox title={'Related posts'}>
+                    {post?.relatedPosts && props.relatedPosts.length > 0? (
+                        <PostInfoBox title={'Related posts'}>
                         <div className="small-post">
                             {post && props.relatedPosts && props.relatedPosts.length > 0 ? props.relatedPosts.filter(_post => _post.title !== post.title).map((post, index) => {
                                 return (
