@@ -14,24 +14,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 
 const AddUserModal = props => {
     return (
-        <Dialog className="add-user-modal" onClose={props.closeAddUserModal} aria-labelledby="customized-dialog-title" open={props.addUserModal}>
+        <Dialog className="add-user-modal" onClose={props.closeAddUserModal} aria-labelledby="customized-dialog-title"
+                open={props.addUserModal}>
             <DialogTitle id="customized-dialog-title" onClose={props.closeAddUserModal}>
                 Add users
             </DialogTitle>
-            <DialogContent dividers>
-                <Typography gutterBottom>
-                    <TextField id="standard-basic" label="Standard" variant="outlined"/>
-                    <TextField id="standard-basic" label="Standard" variant="outlined"/>
-                </Typography>
-                <Typography gutterBottom>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-                    lacus vel augue laoreet rutrum faucibus dolor auctor.
-                </Typography>
-                <Typography gutterBottom>
-                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                    scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-                    auctor fringilla.
-                </Typography>
+            <DialogContent className="content" dividers>
+                <TextField id="standard-basic" label="Standard" variant="outlined"/>
+                <TextField id="standard-basic" label="Standard" variant="outlined"/>
+                <TextField id="standard-basic" label="Standard" variant="outlined"/>
             </DialogContent>
             <DialogActions>
                 <Button autoFocus onClick={props.closeAddUserModal} color="primary">
