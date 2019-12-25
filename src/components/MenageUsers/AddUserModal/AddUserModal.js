@@ -21,6 +21,15 @@ const AddUserModal = props => {
     const [email, setEmail] = useState(null);
     const [avatar, setAvatar] = useState(null);
 
+    const createUser = () => {
+        console.log('Login', login);
+        console.log('nickname', nickname);
+        console.log('password', password);
+        console.log('retypedPassword', retypedPassword);
+        console.log('email', email);
+        console.log('avatar', avatar);
+    };
+
     return (
         <Dialog className="add-user-modal" onClose={props.closeAddUserModal} aria-labelledby="customized-dialog-title"
                 open={props.addUserModal}>
@@ -47,7 +56,8 @@ const AddUserModal = props => {
                 <TextField id="standard-basic" label="Avatar" variant="outlined" className="input"/>
             </DialogContent>
             <DialogActions>
-                <Button autoFocus onClick={props.closeAddUserModal} color="primary">
+                <Button onClick={props.closeAddUserModal} color="primary">Cancel</Button>
+                <Button onClick={createUser} color="primary">
                     Save changes
                 </Button>
             </DialogActions>
